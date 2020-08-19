@@ -1,7 +1,7 @@
 # Common Kit
 
 ![](https://img.shields.io/badge/status-active-green.svg)
-![](https://img.shields.io/badge/stage-development-blue.svg)
+![](https://img.shields.io/badge/stage-beta-yellow.svg)
 ![](https://img.shields.io/badge/coverage-100%25-green.svg)
 
 A collection of common utilities for use in Python projects.
