@@ -1,0 +1,28 @@
+/* override table width restrictions */
+.wy-table-responsive table td, .wy-table-responsive table th {
+    white-space: normal;
+}
+
+.wy-table-responsive {
+    margin-bottom: 24px;
+    max-width: 100%;
+    overflow: visible;
+}
+
+.wy-nav-content {
+    max-width: 100% !important;
+}
+
+.section h2 {
+    border-bottom: 1px solid #327387;
+}
+
+/*
+.wy-side-nav-search {
+    background: #506a8a !important;
+}
+
+.wy-side-scroll {
+    background: #6e90b5 !important;
+}
+*/

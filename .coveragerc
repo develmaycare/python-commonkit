@@ -1,0 +1,13 @@
+[run]
+omit =
+    _scraps/*
+    commonkit/database/backends/mysql.py
+    commonkit/database/compat.py
+    bin/*
+    docs/*
+    legal/*
+    setup.py
+    */compat.py
+    tests/*
+    tmp/*
+    tmp.*

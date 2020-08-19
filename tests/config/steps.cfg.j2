@@ -1,0 +1,29 @@
+install apache:
+    apt apache
+
+install apachetop in live environment:
+    apt apachetop
+    env live
+
+create www directory:
+    mkdir /var/www/{{ domain_tld }}/www
+
+run database migrations:
+    django migrate
+    settings tenants.{{ domain_tld }}.settings
+    path {{ release_root }}/current/source/
+    prefix "source ../python/bin/activate"
+    shell /bin/bash
+
+load fixtures:
+    run "projectutils loaddata"
+    path {{ release_root }}/current
+    prefix "source ../python/bin/activate"
+    shell /bin/bash
+
+this command does not exist:
+    nonexistent test
+
+this is a badly formed command:
+    mkdir /var/www/{{ domain_tld }}/www/content
+    recurse yes

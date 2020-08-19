@@ -1,0 +1,8 @@
+[project]
+title = Example Project
+active = yes
+release = 1
+
+[client]
+name = ACME, Inc.
+code = ACME

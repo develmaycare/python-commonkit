@@ -1,0 +1,17 @@
+*.b
+*.bak
+*.pyc
+.coverage
+.idea
+.pypirc
+.pytest_cache
+__pycache__
+_scraps
+*.egg-info
+build
+data/output
+dist
+docs/build
+local.makefile
+tmp
+tmp.*
