@@ -106,7 +106,20 @@ Intelligently cast the given value to a Python data type.
     value = "yes"
     print(type(smart_cast(value)), smart_cast(value))
 
+Boolean Because
+...............
+
+The ``BooleanBecause`` class provides a boolean value with an optional cause or description of the ``True`` or ``False``
+value.
+
+.. code-block:: python
+
+    from commonkit import BooleanBecause
+
+    value = BooleanBecause(False, because="it's just not true.")
+    print(value)
+
 """
 from .library import *
 
-__version__ = "0.23.0-d"
+__version__ = "0.24.0-d"

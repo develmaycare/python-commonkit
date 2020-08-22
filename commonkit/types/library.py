@@ -13,6 +13,9 @@ __all__ = (
     "is_string",
     "smart_cast",
     "to_bool",
+    "BooleanBecause",
+    "FalseBecause",
+    "TrueBecause",
 )
 
 # Functions
@@ -185,3 +188,51 @@ def to_bool(value, false_values=FALSE_VALUES, true_values=TRUE_VALUES):
         return False
 
     raise ValueError('"%s" cannot be converted to True or False.')
+
+# Classes
+
+
+class BooleanBecause(object):
+    """Simulates a boolean value with an additional description or "cause" for the ``True`` or ``False`` value."""
+
+    def __init__(self, value, because=None):
+        """Initialize a boolean.
+
+        :param value: The boolean value.
+        :type value: bool
+
+        :param because: The reason for ``True`` or ``False``.
+        :type because: str
+
+        """
+        self.value = bool(value)
+        self.because = because or "for unknown reason"
+
+    def __bool__(self):
+        return self.value
+
+    def __eq__(self, other):
+        return bool(self) == other
+
+    def __hash__(self):
+        return hash(bool(self))
+
+    def __neq__(self, other):
+        return not self.__eq__(other)
+
+    def __repr__(self):
+        return "<%s %s>" % (self.value, self.because)
+
+
+class FalseBecause(BooleanBecause):
+    """BooleanBecause with a value of ``False``."""
+
+    def __init__(self, because=None):
+        super().__init__(False, because=because)
+
+
+class TrueBecause(BooleanBecause):
+    """BooleanBecause with a value of ``True``."""
+
+    def __init__(self, because=None):
+        super().__init__(True, because=because)

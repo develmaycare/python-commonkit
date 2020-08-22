@@ -97,3 +97,44 @@ def test_to_bool():
 
     with pytest.raises(ValueError):
         to_bool(1.1)
+
+
+class TestBooleanBecause(object):
+
+    def test_bool(self):
+        value = BooleanBecause(True, because="testing")
+        assert bool(value) is True
+
+    def test_eq(self):
+        value = BooleanBecause(True, because="testing")
+        assert value == True
+
+    def test_hash(self):
+        value = BooleanBecause(True, because="testing")
+        assert hash(value) == 1
+
+    def test_neq(self):
+        value = BooleanBecause(True, because="testing")
+        assert value != False
+
+        true = TrueBecause()
+        false = FalseBecause()
+        assert true.__neq__(false)
+
+    def test_repr(self):
+        value = BooleanBecause(True, because="testing")
+        assert repr(value) == "<True testing>"
+
+
+class TestFalseBecause(object):
+
+    def test_init(self):
+        value = FalseBecause("testing")
+        assert bool(value) is False
+
+
+class TestTrueBecause(object):
+
+    def test_init(self):
+        value = TrueBecause("testing")
+        assert bool(value) is True
