@@ -12,15 +12,15 @@ def read_file(path):
 
 
 setup(
-    name='superpython',
+    name='commonkit',
     version=read_file("VERSION.txt"),
     description=read_file("DESCRIPTION.txt"),
     long_description=read_file("README.markdown"),
     long_description_content_type="text/markdown",
     author='Shawn Davis',
     author_email='shawn@develmaycare.com',
-    url="https://develmaycare.com/products/superpython/",
-    download_url='https://github.com/develmaycare/superpython',
+    url="https://develmaycare.com/products/python/commonkit/",
+    download_url='https://github.com/develmaycare/python-commonkit',
     packages=find_packages(exclude=["tests"]),
     include_package_data=True,
     install_requires=[
