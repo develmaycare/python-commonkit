@@ -35,6 +35,15 @@ def test_is_bool():
     assert true_count == COUNT_2
 
 
+def test_is_email():
+    assert is_email(17) is False
+    assert is_email("bob@bob") is False
+    assert is_email("bob@bob.com") is True
+
+    assert is_email("bob@bob", strict=True) is False
+    assert is_email("bob@bob.com", strict=True) is True
+
+
 def test_is_float():
     """Check that float recognition works as expected."""
 

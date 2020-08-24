@@ -1,12 +1,14 @@
 # Imports
 
 import six
+from ..regex import EMAIL_PATTERN, STRICT_EMAIL_PATTERN
 from ..constants import BOOLEAN_VALUES, FALSE_VALUES, TRUE_VALUES
 
 # Exports
 
 __all__ = (
     "is_bool",
+    "is_email",
     "is_float",
     "is_integer",
     "is_number",
@@ -46,6 +48,26 @@ def is_bool(value, test_values=BOOLEAN_VALUES):
 
     """
     return value in test_values
+
+
+def is_email(value, strict=False):
+    """Determine whether the given value is an email address.
+
+    :param value: The value to be checked.
+
+    :param strict: Use a stricter match for evaluating the address.
+    :type strict: bool
+
+    :rtype: bool
+
+    """
+    if not is_string(value):
+        return False
+
+    if strict:
+        return bool(STRICT_EMAIL_PATTERN.match(value))
+
+    return bool(EMAIL_PATTERN.match(value))
 
 
 def is_float(value):

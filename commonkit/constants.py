@@ -3,9 +3,6 @@ BASE10 = "0123456789"
 BASE16 = "0123456789ABCDEF"
 BASE62 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz"
 
-EMAIL_PATTERN = r"[^@]+@[^@]+\.[^@]+"
-"""A basic regex pattern for validating an email string."""
-
 FALSE_VALUES = (
     0,
     False,

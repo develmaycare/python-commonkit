@@ -25,6 +25,18 @@ Determine if a given value is a boolean at run time.
     By default, a liberal number of values are used to test. If you *just* want ``True`` or ``False``, simply pass
     ``(True, False)`` as ``test_values``.
 
+is_email
+........
+
+Determine if a given value is a valid email address.
+
+.. code-block:: python
+
+    from commonkit import is_email
+
+    print(is_email("bob@bob"))
+    print(is_email("bob@bob.com"))
+
 is_float
 ........
 
@@ -122,4 +134,4 @@ value.
 """
 from .library import *
 
-__version__ = "0.24.0-d"
+__version__ = "0.25.0-d"

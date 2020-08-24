@@ -3,8 +3,7 @@
 from getpass import getpass
 from collections import OrderedDict
 import re
-from ..constants import EMAIL_PATTERN
-from ..types import is_bool, to_bool
+from ..types import is_bool, is_email, to_bool
 
 __version__ = "0.3.0-x"
 
@@ -236,12 +235,13 @@ class Email(Input):
         if not super().is_valid():
             return False
 
-        pattern = re.compile(EMAIL_PATTERN)
-        if not pattern.match(self.value):
-            self.error = "Enter a valid email address."
-            return False
-
-        return True
+        return is_email(self.value)
+        # pattern = re.compile(EMAIL_PATTERN, re.IGNORECASE)
+        # if not pattern.match(self.value):
+        #     self.error = "Enter a valid email address."
+        #     return False
+        #
+        # return True
 
 
 class Float(Input):
