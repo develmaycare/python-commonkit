@@ -54,6 +54,11 @@ Pluggable
 
 .. automodule:: commonkit.pluggable
 
+Regex
+=====
+
+.. automodule:: commonkit.regex
+
 Shell
 =====
 

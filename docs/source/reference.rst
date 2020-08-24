@@ -184,6 +184,17 @@ pluggable
     :show-inheritance:
     :special-members: __init__
 
+regex
+=====
+
+patterns
+--------
+
+.. automodule:: commonkit.regex.patterns
+    :members:
+    :show-inheritance:
+    :special-members: __init__
+
 shell
 =====
 
