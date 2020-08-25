@@ -8,6 +8,7 @@ from ..types import smart_cast
 __all__ = (
     "any_list_item",
     "safe_join",
+    "sort_by",
     "split_csv",
     "xor",
 )
@@ -49,6 +50,51 @@ def safe_join(separator, values):
     _values = [str(i) for i in values]
 
     return separator.join(_values)
+
+
+def sort_by(attribute, iterable, new=False, reverse=False):
+    """Sort an iterable by an attribute of the instance (or dictionary) within the iterable.
+
+    :param attribute: The name of the attribute by which the iterable should be sorted.
+    :type attribute: str
+
+    :param iterable: An iterable (such as a list or tuple).
+
+    :param new: Indicates a new list should be returned. When ``False`` the list is sorted "in place".
+    :type new: bool
+
+    :param reverse: Indicates the list should be sorted in reverse.
+    :type reverse: bool
+
+    :returns: A new iterable when ``new`` is ``True``. Otherwise, ``None``.
+
+    This is a shortcut for using lambda functions sort sortation:
+
+    .. code-block:: python
+
+        # To sort the list in place ...
+        some_list.sort(key=lambda x: x.sort_order)
+
+        # Or to return a new list using the sorted() built-in function ...
+        new_list = sorted(some_list, key=lambda x: x.sort_order)
+
+    I can never seem to remember the lambda syntax, hence ``sort_by()`` saves me looking up
+    `how to sort a list of objects based on an attribute of the objects`_?
+
+    .. _how to sort a list of objects based on an attribute of the objects: https://stackoverflow.com/a/403426/241720
+
+    """
+    def _get_attribute_value(instance):
+        if type(instance) is dict:
+            return instance[attribute]
+
+        return getattr(instance, attribute)
+
+    if new:
+        return sorted(iterable, key=_get_attribute_value, reverse=reverse)
+
+    # iterable.sort(key=lambda x: getattr(x, attribute), reverse=reverse)
+    iterable.sort(key=_get_attribute_value, reverse=reverse)
 
 
 def split_csv(string, separator=",", smart=True):

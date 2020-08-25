@@ -33,6 +33,59 @@ Safely join a list of values. Each value may be of a different Python type.
 
     print(safe_join(",", [1, "two", 3.4, "five"]))
 
+sort_by
+.......
+
+Sort an iterable of objects by an attribute of the object.
+
+Suppose you have an object with a ``sort_order`` attribute:
+
+.. code-block:: python
+
+    class Sortable(object):
+
+        def __init__(self, label, sort_order):
+            self.label = label
+            self.sort_order = sort_order
+
+        def __repr__(self):
+            return "%s:%s" % (self.sort_order, self.label)
+
+Now suppose you want to sort a list of Sortable instances:
+
+.. code-block:: python
+
+    from commonkit import sort_by
+
+    a = [
+        Sortable("five", 5),
+        Sortable("two", 2),
+        Sortable("one", 1),
+        Sortable("four", 4),
+        Sortable("three", 3),
+    ]
+
+    sort_by("sort_order", a)
+    print(a[0].label)
+    print(a[-1].label)
+
+Dictionaries are also supported:
+
+.. code-block:: python
+
+    from commonkit import sort_by
+
+    d = [
+        {'label': "five", 'sort_order': 5},
+        {'label': "two", 'sort_order': 2},
+        {'label': "one", 'sort_order': 1},
+        {'label': "four", 'sort_order': 4},
+        {'label': "three", 'sort_order': 3},
+    ]
+    sort_by("sort_order", d)
+    print(d[0]['label'])
+    print(d[-1]['label'])
+
 split_csv
 .........
 
@@ -67,6 +120,13 @@ An `exclusive or`_ operation on a list of values.
     print("TTTF", xor(True, True, True, False))
     print("TTTFT", xor(True, True, True, False, True))
     print("FFFF", xor(False, False, False, False))
+
+Resources
+---------
+
+- `Python Lists: An In-Depth Tutorial`_
+
+.. _Python Lists: An In-Depth Tutorial: https://howchoo.com/g/ytezyzdlzjg/python-list
 
 """
 from .library import *
