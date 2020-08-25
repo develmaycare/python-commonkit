@@ -7,6 +7,7 @@ from ..types import smart_cast
 
 __all__ = (
     "any_list_item",
+    "safe_join",
     "split_csv",
     "xor",
 )
@@ -32,6 +33,22 @@ def any_list_item(a, b):
                 return True
 
     return False
+
+
+def safe_join(separator, values):
+    """Safely join a list of values.
+
+    :param separator: The separator to use for the string.
+    :type separator: str
+
+    :param values: A list or iterable of values.
+
+    :rtype: str
+
+    """
+    _values = [str(i) for i in values]
+
+    return separator.join(_values)
 
 
 def split_csv(string, separator=",", smart=True):

@@ -22,6 +22,17 @@ Determine whether any item in ``a`` also exists in ``b``.
     b = [3, 4, 5]
     print(any_list_item(a, b))
 
+safe_join
+.........
+
+Safely join a list of values. Each value may be of a different Python type.
+
+.. code-block:: python
+
+    from commonkit import safe_join
+
+    print(safe_join(",", [1, "two", 3.4, "five"]))
+
 split_csv
 .........
 
@@ -48,6 +59,8 @@ An `exclusive or`_ operation on a list of values.
 ``True``.
 
 .. code-block:: python
+
+    from commonkit import xor
 
     print("TTTT", xor(True, True, True, True))
     print("TTT", xor(True, True, True))

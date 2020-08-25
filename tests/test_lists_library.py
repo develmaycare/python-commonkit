@@ -13,6 +13,17 @@ def test_any_list_item():
     assert any_list_item(a, b) is False
 
 
+def test_safe_join():
+    string = safe_join(",", [1, "two", 3.4, "five"])
+    assert string == "1,two,3.4,five"
+
+    string = safe_join(r"\n", [1, "two", 3.4, "five"])
+    assert "1" in string
+    assert "two" in string
+    assert "3.4" in string
+    assert "five" in string
+
+
 def test_split_csv():
     a = "1, yes, 17.5, testing"
     b = split_csv(a)
