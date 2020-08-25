@@ -1,5 +1,6 @@
 # Imports
 
+from functools import reduce
 from ..types import smart_cast
 
 # Exports
@@ -7,6 +8,7 @@ from ..types import smart_cast
 __all__ = (
     "any_list_item",
     "split_csv",
+    "xor",
 )
 
 # Functions
@@ -63,3 +65,19 @@ def split_csv(string, separator=",", smart=True):
         a.append(value)
 
     return a
+
+
+def xor(*values):
+    """An `exclusive or`_ operation on a list of values.
+
+    .. _exclusive or: https://en.wikipedia.org/wiki/Exclusive_or
+
+    :rtype: bool
+    :returns: ``True`` when an odd number of values are ``True`` or ``False`` when an even number of values are
+              ``True``.
+
+    .. note::
+        The provided values *must* support casting as a ``bool``.
+
+    """
+    return reduce(lambda x, y: bool(x) ^ bool(y), values)

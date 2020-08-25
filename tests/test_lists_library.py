@@ -22,3 +22,11 @@ def test_split_csv():
     assert isinstance(b[1], bool)
     assert isinstance(b[2], float)
     assert isinstance(b[3], str)
+
+
+def test_xor():
+    assert xor(True, True, True, True) is False
+    assert xor(True, True, True) is True
+    assert xor(True, True, True, False) is True
+    assert xor(True, True, True, False, True) is False
+    assert xor(False, False, False, False) is False
