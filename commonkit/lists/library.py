@@ -7,6 +7,7 @@ from ..types import smart_cast
 
 __all__ = (
     "any_list_item",
+    "filter_by",
     "safe_join",
     "sort_by",
     "split_csv",
@@ -34,6 +35,59 @@ def any_list_item(a, b):
                 return True
 
     return False
+
+
+def filter_by(attribute, iterable, values):
+    """Filter an iterable based on the value of an attribute.
+
+    :param attribute: The name of the attribute by which the iterable is filtered. This must exist as an attribute on
+                      each instance within the iterable or as a dictionary key if the iterable contains dictionaries.
+                      The attribute itself may be list or tuple.
+    :type attribute: str
+
+    :param iterable: An iterable (such as a list or tuple).
+
+    :param values: The values to be matched. The type of each value must be the same as the type of the attribute. This
+                   may be given as a list, tuple, str, integer, float, or bool.
+
+    :returns: A list of iterable instances that been filtered.
+
+    """
+    if type(values) in (list, tuple):
+        _values = values
+    else:
+        _values = [values]
+
+    filtered = list()
+    for i in iterable:
+
+        # Get the actual value of attribute.
+        if type(i) is dict:
+            attr = i[attribute]
+        else:
+            attr = getattr(i, attribute)
+
+        if type(attr) in (list, tuple):
+            include = any_list_item(attr, _values)
+        elif attr in _values:
+            include = True
+        else:
+            include = False
+
+        if include:
+            filtered.append(i)
+
+        # if attr not in _values:
+        #
+        # if type(attr) in (list, tuple) and not any_list_item(attr, _values):
+        #     print("attr no match", attr, _values)
+        #     continue
+        # elif attr not in _values:
+        #     continue
+        # else:
+        #     filtered.append(i)
+
+    return filtered
 
 
 def safe_join(separator, values):
