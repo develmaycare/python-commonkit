@@ -66,6 +66,20 @@ def test_indent():
         index += 1
 
 
+def test_is_ascii():
+    assert is_ascii("å fine méss") is False
+    assert is_ascii("a fine mess") is True
+
+
+def test_is_variable_name():
+    assert is_variable_name("1776_testing") is False
+    assert is_variable_name("testing-123") is False
+    assert is_variable_name("Testing 123") is False
+    assert is_variable_name("tésting") is False
+    assert is_variable_name("testing_123") is True
+    assert is_variable_name("_testing") is True
+
+
 def test_parse_jinja_string():
     """Check the output of string template processing."""
 

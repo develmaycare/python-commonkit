@@ -89,18 +89,29 @@ Indent a string.
     text = "This text will be indented."
     print(indent(text))
 
-is_string
-.........
+is_ascii
+........
 
-Indicates whether the given value is a string. Saves a little typing.
+Indicates whether a string contains only ASCII characters.
 
 .. code-block:: python
 
-    from commonkit import is_string
+    from commonkit import is_ascii
 
-    print(is_string("testing"))
-    print(is_string("17"))
-    print(is_string(17))
+    print(is_ascii("å fine méss"))
+    print(is_ascii("a fine mess"))
+
+is_variable_name
+................
+
+Indicates whether the given string may be used as a valid Python variable name.
+
+.. code-block:: python
+
+    from commonkit import is_variable_name
+
+    print(is_variable_name("123_testing"))
+    print(is_variable_name("testing_123"))
 
 parse_jinja_string
 ..................
@@ -200,4 +211,4 @@ Convert a string from ``under_score_case`` to ``Title Case``.
 """
 from .library import *
 
-__version__ = "0.22.0-d"
+__version__ = "0.23.0-d"

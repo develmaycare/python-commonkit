@@ -77,6 +77,19 @@ Indicates whether the given value is a number; a decimal, float, or integer.
     print(is_number(Decimal("17.50")))
     print(is_number("seventeen")
 
+is_string
+.........
+
+Indicates whether the given value is a string. Saves a little typing.
+
+.. code-block:: python
+
+    from commonkit import is_string
+
+    print(is_string("testing"))
+    print(is_string("17"))
+    print(is_string(17))
+
 to_bool
 .......
 
@@ -134,4 +147,4 @@ value.
 """
 from .library import *
 
-__version__ = "0.25.0-d"
+__version__ = "0.25.1-d"

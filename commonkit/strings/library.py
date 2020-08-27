@@ -3,6 +3,7 @@
 import re
 from ..constants import BASE10, BASE62
 from ..compat import get_formatter_by_name, get_lexer_by_name, highlight, remove_html, unidecode, JinjaTemplate
+from ..regex import VARIABLE_NAME_PATTERN
 
 # Exports
 
@@ -11,6 +12,8 @@ __all__ = (
     "camelcase_to_underscore",
     "highlight_code",
     "indent",
+    "is_ascii",
+    "is_variable_name",
     "parse_jinja_string",
     "remove_non_ascii",
     "slug",
@@ -131,6 +134,39 @@ def indent(text, amount=4):
     """
     prefix = " " * amount
     return prefix + text.replace('\n', '\n' + prefix)
+
+
+def is_ascii(string):
+    """Indicates whether a string contains only ASCII characters.
+
+    :param string: The string to be evaluated.
+    :type string: str
+
+    :rtype: bool
+
+    .. note::
+        As of Python 3.7, strings provide the ``isascii()`` method. See the discussions at:
+        https://stackoverflow.com/q/196345/241720
+
+    """
+    try:
+        string.encode('ascii')
+    except UnicodeEncodeError:
+        return False
+    else:
+        return True
+
+
+def is_variable_name(string):
+    """Indicates whether the given string may be used as a valid Python variable name.
+
+    :param string: The string to be evaluated.
+    :type string: str
+
+    :rtype: bool
+
+    """
+    return bool(VARIABLE_NAME_PATTERN.match(string))
 
 
 def parse_jinja_string(string, context):

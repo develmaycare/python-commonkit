@@ -7,9 +7,11 @@ import re
 __all__ = (
     "EMAIL_PATTERN",
     "STRICT_EMAIL_PATTERN",
+    "VARIABLE_NAME_PATTERN",
 )
 
 # Patterns
+
 
 EMAIL_PATTERN = re.compile(r"[^@]+@[^@]+\.[^@]+", re.IGNORECASE)
 """A basic regex pattern for validating an email string."""
@@ -26,6 +28,9 @@ STRICT_EMAIL_PATTERN = re.compile(
     re.IGNORECASE
 )
 """A strict regex pattern for validating an email string."""
+
+VARIABLE_NAME_PATTERN = re.compile('^[a-zA-Z_][0-9a-zA-Z_]*$')
+"""A pattern which may be used to validate that a string may be used as valid Python variable name."""
 
 # More patterns at:
 # https://www.geeksforgeeks.org/how-to-validate-ssn-social-security-number-using-regular-expression/
