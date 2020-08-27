@@ -8,6 +8,7 @@ from ..types import smart_cast
 __all__ = (
     "any_list_item",
     "filter_by",
+    "flatten",
     "safe_join",
     "sort_by",
     "split_csv",
@@ -88,6 +89,21 @@ def filter_by(attribute, iterable, values):
         #     filtered.append(i)
 
     return filtered
+
+
+def flatten(iterable):
+    """Flatten a list, tuple, or other iterable so that nested iterables are combined into a single list.
+
+    :param iterable: The iterable to be flattened. Each element is also an interable.
+
+    :rtype: list
+
+    """
+    iterator = iter(iterable)
+    try:
+        return sum(iterator, next(iterator))
+    except StopIteration:
+        return []
 
 
 def safe_join(separator, values):

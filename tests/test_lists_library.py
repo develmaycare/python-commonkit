@@ -59,6 +59,22 @@ def test_filter_by():
     assert len(e) == 2
 
 
+def test_flatten():
+    a = [
+        [1, 2],
+        [3, 4, 5],
+        [6, 7],
+        [8, 9],
+        [10],
+    ]
+    b = flatten(a)
+    assert len(b) == 10
+
+    c = []
+    d = flatten(c)
+    assert len(d) == 0
+
+
 def test_safe_join():
     string = safe_join(",", [1, "two", 3.4, "five"])
     assert string == "1,two,3.4,five"

@@ -22,6 +22,50 @@ Determine whether any item in ``a`` also exists in ``b``.
     b = [3, 4, 5]
     print(any_list_item(a, b))
 
+filter_by
+.........
+
+Filter an iterable based on the value of an attribute.
+
+.. code-block:: python
+
+    from commonkit import filter_by
+
+    class Filterable(object):
+
+        def __init__(self, label, tags):
+            self.label = label
+            self.tags = tags
+
+    a = [
+        Filterable("one.example.com", ["development", "testing"]),
+        Filterable("two.example.com", ["testing", "staging"]),
+        Filterable("three.example.com", ["live"]),
+        Filterable("four.example.com", ["live"]),
+        Filterable("five.example.com", ["live"]),
+    ]
+    b = filter_by("tags", a, "testing")
+    print(b)
+
+flatten
+.......
+
+Flatten a list, tuple, or other iterable so that nested iterables are combined into a single list.
+
+.. code-block:: python
+
+    from commonkit import flatten
+
+    a = [
+        [1, 2],
+        [3, 4, 5],
+        [6, 7],
+        [8, 9],
+        [10],
+    ]
+    b = flatten(a)
+    print(b)
+
 safe_join
 .........
 
@@ -131,4 +175,4 @@ Resources
 """
 from .library import *
 
-__version__ = "0.22.0-d"
+__version__ = "0.23.0-d"
