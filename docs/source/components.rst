@@ -34,6 +34,11 @@ Files
 
 .. automodule:: commonkit.files
 
+Lists
+=====
+
+.. automodule:: commonkit.lists
+
 Logging
 =======
 

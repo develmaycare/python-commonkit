@@ -168,9 +168,9 @@ An `exclusive or`_ operation on a list of values.
 Resources
 ---------
 
-- `Python Lists: An In-Depth Tutorial`_
+- `Python Lists An In-Depth Tutorial`_
 
-.. _Python Lists: An In-Depth Tutorial: https://howchoo.com/g/ytezyzdlzjg/python-list
+.. _Python Lists An In-Depth Tutorial: https://howchoo.com/g/ytezyzdlzjg/python-list
 
 """
 from .library import *

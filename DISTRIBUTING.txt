@@ -1,34 +1,49 @@
-Setup
+# Distributing
 
-Distribution requires setuptools, wheel, and twine. While setuptools is mostly likely already installed, you will need
-to install wheel and twine: pip install twine wheel
+## Setup
 
-The .gitignore file should include: build, dist, *.egg-info
+Distribution requires setuptools, wheel, and twine. While setuptools is mostly likely already installed, you will probably need to install wheel and twine:
 
-Notes
+```bash
+pip install twine wheel
+```
+
+The .gitignore file should include:
+
+```text
+*.egg-info
+build
+dist
+```
+
+## Notes
 
 For convenience, the Makefile contains two targets:
 
 - dist: To create and test the distribution.
 - publish: To publish to PYPI.
 
-After make dist, It's a good idea to publish to the PYPI test site first:
+After `make dist`, It's a good idea to publish to the PYPI test site first:
 
+```bash
 twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+```
 
 You can test the install (in a virtual env) using:
 
-pip install -i https://test.pypi.org/simple/ superpython
+```bash
+pip install -i https://test.pypi.org/simple/ python-commonkit
+```
 
-The version must always be bumped to avoid a "file already exists" error. Also, be sure to update the Development Status
-classifier in setup.py if appropriate.
+The version must always be bumped to avoid a "file already exists" error. Also, be sure to update the Development Status classifier in `setup.py` if appropriate.
 
 Checklist:
 
-1. Make sure all tests are passing.
-2. Make sure documentation is built and published.
-3. Bump the version if it hasn't been done already.
-4. Run: make dist
-5. Upload to test: twine upload --repository-url https://test.pypi.org/legacy/ dist/*
-6. Run: make publish
-7. Satisfaction.
+1. Make sure the master branch is checked out.
+2. Make sure all tests are passing.
+3. Make sure documentation is built and published.
+4. Bump the version if it hasn't been done already.
+5. Run: `make dist`
+6. Upload to test: `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
+7. Run: `make publish`
+8. Satisfaction.
