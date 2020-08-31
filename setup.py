@@ -12,7 +12,7 @@ def read_file(path):
 
 
 setup(
-    name='commonkit',
+    name='python-commonkit',
     version=read_file("VERSION.txt"),
     description=read_file("DESCRIPTION.txt"),
     long_description=read_file("README.markdown"),
@@ -21,7 +21,13 @@ setup(
     author_email='shawn@develmaycare.com',
     url="https://develmaycare.com/products/python/commonkit/",
     download_url='https://github.com/develmaycare/python-commonkit',
-    packages=find_packages(exclude=["tests"]),
+    project_urls={
+        'Documentation': 'https://docs.develmaycare.com/en/python-commonkit/latest/',
+        # 'Say Thanks!': 'http://saythanks.io/to/example',
+        'Source': 'https://github.com/develmaycare/python-commonkit/',
+        'Tracker': 'https://github.com/develmaycare/python-commonkit/issues/',
+    },
+    packages=find_packages(exclude=["tests", "tests.*"]),
     include_package_data=True,
     install_requires=[
         "six",
@@ -63,7 +69,7 @@ setup(
         ]
     },
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',

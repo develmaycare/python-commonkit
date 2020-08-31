@@ -1,7 +1,8 @@
 global-exclude *.log *.pyc *.swp
-recursive-exclude _scraps
-recursive-exclude docs
-recursive-exclude sandbox
+recursive-exclude _scraps *
+recursive-exclude docs *
+recursive-exclude sandbox *
+recursive-exclude tests *
 include DESCRIPTION.txt
 include VERSION.txt
 include LICENSE.txt

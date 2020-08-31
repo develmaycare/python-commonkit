@@ -9,7 +9,6 @@ __pycache__
 _scraps
 *.egg-info
 build
-data/output
 dist
 docs/build
 local.makefile
