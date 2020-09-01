@@ -16,6 +16,7 @@ __all__ = (
     "is_variable_name",
     "parse_jinja_string",
     "remove_non_ascii",
+    "replace_non_ascii",
     "slug",
     "strip_html_tags",
     "truncate",
@@ -200,12 +201,32 @@ def parse_jinja_string(string, context):
 
 
 def remove_non_ascii(text):
-    """Replace non-ASCII characters with ASCII characters.
+    """*Remove* non-ASCII characters from a string.
 
     :param text: The string that should have non-ASCII characters removed.
     :type text: str
 
     :rtype: str
+
+    .. note::
+        This may leave blank spaces in the text. Use ``strip()`` or ``replace()`` to remove them.
+
+    """
+    return ''.join(i for i in text if ord(i) < 128)
+
+
+def replace_non_ascii(text):
+    """Attempt to *replace* non-ASCII characters with ASCII characters.
+
+    :param text: The string that should have non-ASCII characters replaced.
+    :type text: str
+
+    :rtype: str
+
+    .. note::
+        Requires the `Unidecode package`_.
+
+    .. _Unidecode package: https://pypi.org/project/Unidecode/
 
     """
     return unidecode(str(text))
@@ -227,7 +248,7 @@ def slug(text, separator="-"):
         awesome-slugify.
 
     """
-    text = remove_non_ascii(text)
+    text = replace_non_ascii(text)
 
     removes = [
         ",",

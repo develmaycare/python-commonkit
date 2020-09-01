@@ -135,7 +135,7 @@ Parse the given string as a Jinja 2 template.
 remove_non_ascii
 ................
 
-Replace non-ASCII characters with ASCII characters.
+Remove non-ASCII characters from a string.
 
 .. code-block:: python
 
@@ -143,6 +143,19 @@ Replace non-ASCII characters with ASCII characters.
 
     string = "å fine méss"
     print(remove_non_ascii(string))
+
+
+replace_non_ascii
+.................
+
+Replace non-ASCII characters with ASCII characters.
+
+.. code-block:: python
+
+    from commonkit import replace_non_ascii
+
+    string = "å fine méss"
+    print(replace_non_ascii(string))
 
 slug
 ....
@@ -211,4 +224,4 @@ Convert a string from ``under_score_case`` to ``Title Case``.
 """
 from .library import *
 
-__version__ = "0.23.0-d"
+__version__ = "0.24.0"

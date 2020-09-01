@@ -101,7 +101,12 @@ def test_parse_jinja_string():
 
 def test_remove_non_ascii():
     string = "å fine méss"
-    assert remove_non_ascii(string) == "a fine mess"
+    assert remove_non_ascii(string) == " fine mss"
+
+
+def test_replace_non_ascii():
+    string = "å fine méss"
+    assert replace_non_ascii(string) == "a fine mess"
 
 
 def test_slug():
