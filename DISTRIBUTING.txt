@@ -35,14 +35,14 @@ You can test the install (in a virtual env) using:
 pip install -i https://test.pypi.org/simple/ python-commonkit
 ```
 
-The version must always be bumped to avoid a "file already exists" error. Also, be sure to update the Development Status classifier in `setup.py` if appropriate.
+> Note: The PYPI test site may not have all of the required dependencies for the package.
 
 Checklist:
 
 1. Make sure the master branch is checked out.
 2. Make sure all tests are passing.
 3. Make sure documentation is built and published.
-4. Bump the version if it hasn't been done already.
+4. Bump the version if it hasn't been done already. The version must always be bumped to avoid a "file already exists" error. Also, be sure to update the Development Status classifier in `setup.py` if appropriate.
 5. Run: `make dist`
 6. Upload to test: `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
 7. Run: `make publish`

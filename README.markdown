@@ -50,10 +50,10 @@ Tablib is required for database export features: `pip install tablib`
 Files and strings make optional use of BeautifulSoup, Jinja2, Pygments, and unidecode:
 
 ```bash
-pip install bs4; for strip_html_tags()
-pip install jinja2; for parse_jinja_string() and parse_jinja_template() and config when parsing files as templates
-pip install pygments; for highlight_code()
-pip install unidecode; for remove_non_ascii()
+pip install beautifulsoup4; # for strip_html_tags()
+pip install jinja2; # for parse_jinja_string() and parse_jinja_template() and config when parsing files as templates
+pip install pygments; # for highlight_code()
+pip install unidecode; # for replace_non_ascii() and slug()
 ```
 
 Or use `pip install commonkit[strings]` to install all of these dependencies.
