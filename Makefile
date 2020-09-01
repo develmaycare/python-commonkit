@@ -22,7 +22,9 @@ dist:
 	cp DESCRIPTION.txt $(PACKAGE_NAME)/;
 	cp LICENSE.txt $(PACKAGE_NAME)/;
 	cp VERSION.txt $(PACKAGE_NAME)/;
+	@rm -Rf build/*;
 	@rm -Rf dist/*;
+	@rm -Rf *.egg-info;
 	python setup.py sdist bdist_wheel;
 	twine check dist/*;
 	rm $(PACKAGE_NAME)/*.txt;

@@ -28,13 +28,14 @@ setup(
         'Tracker': 'https://github.com/develmaycare/python-commonkit/issues/',
     },
     packages=find_packages(exclude=["tests", "tests.*"]),
+    # packages=["commonkit"],
     include_package_data=True,
     install_requires=[
         "six",
     ],
     extras_require={
         'all': [
-            "bs4",
+            "beautifulsoup4",
             "colorama",
             "jinja2",
             "pygments",
@@ -62,7 +63,7 @@ setup(
             "tabulate",
         ],
         'strings': [
-            "bs4",
+            "beautifulsoup4",
             "jinja2",
             "pygments",
             "unidecode",
@@ -82,19 +83,20 @@ setup(
     ],
     zip_safe=False,
     tests_require=[
-        "bs4",
+        "beautifulsoup4",
         "colorama",
-        "jinja2",
-        "pygments",
-        "six",
-        "tabulate",
         "coverage",
         'cx_Oracle',
+        "jinja2",
         "psycopg2-binary",
         "pyodbc",
         "pytest",
+        "pygments",
+        "six",
         "SQLAlchemy",
         "tablib",
+        "tabulate",
+        "unidecode",
     ],
     test_suite='runtests.runtests'
 )
