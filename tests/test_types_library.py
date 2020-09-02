@@ -47,6 +47,8 @@ def test_is_email():
 def test_is_float():
     """Check that float recognition works as expected."""
 
+    assert is_float(True) is False
+    assert is_float(False) is False
     assert is_float(17) is False
     assert is_float(17.5) is True
     assert is_float("17.5") is True
@@ -57,6 +59,8 @@ def test_is_float():
 def test_is_integer():
     """Check that integer recognition works as expected."""
 
+    assert is_integer(True) is False
+    assert is_integer(False) is False
     assert is_integer(17) is True
     assert is_integer(17.5) is False
     assert is_integer("17") is False
@@ -65,6 +69,8 @@ def test_is_integer():
 
 
 def test_is_number():
+    assert is_number(True) is False
+    assert is_number(False) is False
     assert is_number(17) is True
     assert is_number(Decimal('17.17')) is True
     assert is_number(1.1717) is True

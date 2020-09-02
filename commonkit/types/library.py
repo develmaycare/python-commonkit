@@ -7,6 +7,7 @@ from ..constants import BOOLEAN_VALUES, FALSE_VALUES, TRUE_VALUES
 # Exports
 
 __all__ = (
+    "boolean_safe",
     "is_bool",
     "is_email",
     "is_float",
@@ -19,6 +20,24 @@ __all__ = (
     "FalseBecause",
     "TrueBecause",
 )
+
+# Decorators
+
+
+def boolean_safe(function):
+    """Decorate a function such that any value provided as a bool will always return ``False`` before the value is
+    evaluated by the function. See ``is_float()``, ``is_integer()``, and ``is_number()``.
+
+    """
+
+    def wrapper(value, **kwargs):
+        # Booleans must be ignored.
+        if type(value) is bool:
+            return False
+
+        return function(value, **kwargs)
+
+    return wrapper
 
 # Functions
 
@@ -70,6 +89,7 @@ def is_email(value, strict=False):
     return bool(EMAIL_PATTERN.match(value))
 
 
+@boolean_safe
 def is_float(value):
     """Indicates whether the given value is a float.
 
@@ -91,6 +111,7 @@ def is_float(value):
         return False
 
 
+@boolean_safe
 def is_integer(value, cast=False):
     """Indicates whether the given value is an integer. Saves a little typing.
 
@@ -125,6 +146,7 @@ def is_integer(value, cast=False):
     return False
 
 
+@boolean_safe
 def is_number(value):
     """Indicates whether a given value is a number; a decimal, float, or integer.
 
@@ -167,7 +189,7 @@ def smart_cast(value):
     :type value: str
 
     """
-    # Handle integers first because is_bool() may interpret 0s and 1s ad  booleans.
+    # Handle integers first because is_bool() may interpret 0s and 1s as booleans.
     if is_integer(value, cast=True):
         return int(value)
     elif is_float(value):
