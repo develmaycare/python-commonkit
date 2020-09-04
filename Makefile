@@ -52,8 +52,9 @@ lines:
 
 #> publish - Publish to PYPI.
 publish:
-	twine upload --repository-url https://pypi.org/ dist/*;
+	twine upload --repository-url https://upload.pypi.org/legacy/ dist/*;
 	#twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
 
 #> secure - Run security checks on the code base.
 secure:
