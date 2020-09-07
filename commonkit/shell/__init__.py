@@ -226,6 +226,7 @@ from .constants import *
 from .prompts import get_choice, get_input
 from .scripts import *
 from .tables import Table
+from .variables import *
 from . import prompts
 
-__version__ = "0.9.1-d"
+__version__ = "0.9.2-d"

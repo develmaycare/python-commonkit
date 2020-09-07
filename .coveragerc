@@ -3,6 +3,7 @@ omit =
     _scraps/*
     commonkit/database/backends/mysql.py
     commonkit/database/compat.py
+    commonkit/version.py
     bin/*
     docs/*
     legal/*
