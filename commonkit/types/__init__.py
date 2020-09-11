@@ -116,6 +116,19 @@ Note that an unrecognized value will raise a value error.
     except ValueError:
         print('"%s" is not a boolean value.' % value)
 
+to_timedelta
+............
+
+Convert a given string to a timedelta.
+
+.. code-block:: python
+
+    from commonkit import to_timedelta
+
+    print(to_timedelta("1d 4h"))
+    print(to_timedelta("1h 15m"))
+    print(to_timedelta("1m10s"))
+
 smart_cast
 ..........
 
@@ -147,4 +160,4 @@ value.
 """
 from .library import *
 
-__version__ = "0.25.2-d"
+__version__ = "0.26.0-d"

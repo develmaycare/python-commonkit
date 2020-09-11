@@ -1,7 +1,8 @@
 # Imports
 
+from datetime import timedelta
 import six
-from ..regex import EMAIL_PATTERN, STRICT_EMAIL_PATTERN
+from ..regex import EMAIL_PATTERN, HUMAN_FRIENDLY_DURATION_PATTERN, STRICT_EMAIL_PATTERN
 from ..constants import BOOLEAN_VALUES, FALSE_VALUES, TRUE_VALUES
 
 # Exports
@@ -16,6 +17,7 @@ __all__ = (
     "is_string",
     "smart_cast",
     "to_bool",
+    "to_timedelta",
     "BooleanBecause",
     "FalseBecause",
     "TrueBecause",
@@ -232,6 +234,41 @@ def to_bool(value, false_values=FALSE_VALUES, true_values=TRUE_VALUES):
         return False
 
     raise ValueError('"%s" cannot be converted to True or False.')
+
+
+def to_timedelta(value):
+    """Parse a duration string in a human "friendly" time format.
+
+    :param string: The string to be parsed. This may be in the format of `1d 1h 1m 1s` or any combination thereof.
+    :type string: str
+
+    :rtype: timedelta
+
+    :raise: ValueError
+    :raises: A ``ValueError`` if the duration could not be identified.
+
+    Modified from this SO answer: https://stackoverflow.com/a/51916936/241720
+
+    """
+    # Normalize the string by removing empty spaces.
+    _string = value.replace(" ", "")
+
+    # Parse the string.
+    matches = HUMAN_FRIENDLY_DURATION_PATTERN.match(_string)
+
+    # Throw an error if there are no matches.
+    if matches is None:
+        raise ValueError("Failed to parse duration from: %s" % value)
+
+    # Build the timedelta kwargs from the matches.
+    # kwargs = {name: float(param) for name, param in matches.groupdict().items() if param}
+    kwargs = dict()
+    for key, value in matches.groupdict().items():
+        if value:
+            kwargs[key] = float(value)
+
+    # Return the delta.
+    return timedelta(**kwargs)
 
 # Classes
 

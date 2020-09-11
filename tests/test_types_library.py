@@ -1,7 +1,7 @@
-import os
+# import os
 from decimal import Decimal
 import pytest
-import shutil
+# import shutil
 from commonkit.types.library import *
 from commonkit.constants import FALSE_VALUES, TRUE_VALUES
 
@@ -112,6 +112,17 @@ def test_to_bool():
 
     with pytest.raises(ValueError):
         to_bool(1.1)
+
+
+def test_to_timedelta():
+    d = to_timedelta("17m")
+    assert d.seconds == 1020
+
+    d = to_timedelta("1d 4h 15m")
+    assert d.seconds == 15300
+
+    with pytest.raises(ValueError):
+        to_timedelta("1 day")
 
 
 class TestBooleanBecause(object):

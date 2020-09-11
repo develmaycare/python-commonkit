@@ -6,6 +6,7 @@ import re
 
 __all__ = (
     "EMAIL_PATTERN",
+    "HUMAN_FRIENDLY_DURATION_PATTERN",
     "STRICT_EMAIL_PATTERN",
     "VARIABLE_NAME_PATTERN",
 )
@@ -15,6 +16,9 @@ __all__ = (
 
 EMAIL_PATTERN = re.compile(r"[^@]+@[^@]+\.[^@]+", re.IGNORECASE)
 """A basic regex pattern for validating an email string."""
+
+HUMAN_FRIENDLY_DURATION_PATTERN = re.compile(r'^((?P<days>[.\d]+?)d)?((?P<hours>[.\d]+?)h)?((?P<minutes>[.\d]+?)m)?((?P<seconds>[.\d]+?)s)?$')
+"""A regex pattern which matches values like ``1d8h10m15s`` or any combination thereof."""
 
 # From: https://github.com/cool-RR/python_toolbox/blob/master/python_toolbox/misc_tools/misc_tools.py
 STRICT_EMAIL_PATTERN = re.compile(
