@@ -13,6 +13,7 @@ __all__ = (
     "sort_by",
     "split_csv",
     "xor",
+    "Loop",
 )
 
 # Functions
@@ -214,3 +215,51 @@ def xor(*values):
 
     """
     return reduce(lambda x, y: bool(x) ^ bool(y), values)
+
+
+# Classes
+
+
+class Loop(object):
+    """A list with a built in index."""
+
+    def __init__(self, values):
+        """Initialize a loop.
+
+        :param values: The values to be iterated. This may be a list, tuple, or any iterable that acts as a linear
+                       sequence as a values.
+
+        """
+        self.count = 0
+        self.values = values
+
+    def __iter__(self):
+        return self
+
+    def __len__(self):
+        return len(self.values)
+
+    def __next__(self):
+        try:
+            value = self.values[self.count]
+            self.count += 1
+
+            return value
+        except IndexError:
+            raise StopIteration
+
+    def is_first(self):
+        """Indicates the loop is on the first row.
+
+        :rtype: bool
+
+        """
+        return self.count == 1
+
+    def is_last(self):
+        """Indicates the loop is on the last row.
+
+        :rtype: bool
+
+        """
+        return self.count == len(self.values)

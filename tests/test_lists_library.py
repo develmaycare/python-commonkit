@@ -140,3 +140,20 @@ def test_xor():
     assert xor(True, True, True, False) is True
     assert xor(True, True, True, False, True) is False
     assert xor(False, False, False, False) is False
+
+
+class TestLoop(object):
+
+    def test_iter(self):
+        loop = Loop(["A", "B", "C", "D", "E", "F", "G"])
+        for i in loop:
+            if loop.is_first():
+                assert i == "A"
+            elif loop.is_last():
+                assert i == "G"
+            else:
+                assert i in ("B", "C", "D", "E", "F")
+
+    def test_len(self):
+        loop = Loop(["A", "B", "C", "D", "E", "F", "G"])
+        assert len(loop) == 7

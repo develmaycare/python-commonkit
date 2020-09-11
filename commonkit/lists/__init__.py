@@ -165,6 +165,17 @@ An `exclusive or`_ operation on a list of values.
     print("TTTFT", xor(True, True, True, False, True))
     print("FFFF", xor(False, False, False, False))
 
+Loop
+....
+
+The Loop class provides some built-in convenience for working in for loops.
+
+.. code-block:: python
+
+    loop = Loop(["A", "B", "C", "D", "E", "F", "G"])
+    for i in indexed:
+        print(loop.count, loop.is_first(), value, loop.is_last())
+
 Resources
 ---------
 
@@ -175,4 +186,4 @@ Resources
 """
 from .library import *
 
-__version__ = "0.23.0-d"
+__version__ = "0.24.0-d"
