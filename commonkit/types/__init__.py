@@ -2,7 +2,9 @@
 Abstract
 --------
 
-Working with Python types, especially at runtime when a given variable type is unknown, is an essential programming activity. This types module provides flexible type detection and "smart" casting to dynamically coerce data to the most appropriate type.
+Working with Python types, especially at runtime when a given variable type is unknown, is an essential programming
+activity. This types module provides flexible type detection and "smart" casting to dynamically coerce data to the most
+appropriate type.
 
 Usage
 -----
@@ -208,4 +210,4 @@ settings and class-based constants.
 """
 from .library import *
 
-__version__ = "0.28.0-d"
+__version__ = "0.28.1-d"

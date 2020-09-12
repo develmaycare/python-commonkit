@@ -43,6 +43,9 @@ def boolean_safe(function):
 
         return function(value, **kwargs)
 
+    # https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
+    wrapper.__doc__ = function.__doc__
+
     return wrapper
 
 # Functions
