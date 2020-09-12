@@ -136,6 +136,14 @@ dispatcher
     :show-inheritance:
     :special-members: __init__
 
+exceptions
+==========
+
+.. automodule:: commonkit.exceptions.library
+    :members:
+    :show-inheritance:
+    :special-members: __init__
+
 files
 =====
 

@@ -29,6 +29,11 @@ Dispatcher
 
 .. automodule:: commonkit.dispatcher
 
+Exceptions
+==========
+
+.. automodule:: commonkit.exceptions
+
 Files
 =====
 
