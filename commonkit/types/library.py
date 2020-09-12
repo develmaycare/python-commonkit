@@ -22,6 +22,7 @@ __all__ = (
     "to_decimal",
     "to_timedelta",
     "BooleanBecause",
+    "DoesNotInstantiate",
     "FalseBecause",
     "TrueBecause",
 )
@@ -349,6 +350,13 @@ class BooleanBecause(object):
 
     def __repr__(self):
         return "<%s %s>" % (self.value, self.because)
+
+
+class DoesNotInstantiate:
+    """A class which cannot be instantiated. Useful, for creating constants or settings."""
+
+    def __new__(cls, *args, **kwargs):
+        raise RuntimeError("This class cannot be instantiated.")
 
 
 class FalseBecause(BooleanBecause):

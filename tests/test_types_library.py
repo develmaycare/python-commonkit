@@ -175,6 +175,16 @@ class TestBooleanBecause(object):
         assert repr(value) == "<True testing>"
 
 
+class TestDoesNotInstantiate(object):
+
+    def test_init(self):
+        class SETTINGS(DoesNotInstantiate):
+            pass
+
+        with pytest.raises(RuntimeError):
+            settings = SETTINGS()
+
+
 class TestFalseBecause(object):
 
     def test_init(self):

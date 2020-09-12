@@ -175,8 +175,8 @@ Intelligently cast the given value to a Python data type.
     value = "yes"
     print(type(smart_cast(value)), smart_cast(value))
 
-Boolean Because
-...............
+BooleanBecause
+..............
 
 The ``BooleanBecause`` class provides a boolean value with an optional cause or description of the ``True`` or ``False``
 value.
@@ -188,7 +188,24 @@ value.
     value = BooleanBecause(False, because="it's just not true.")
     print(value)
 
+There are two convenience classes that extend ``BooleanBecause``: ``FalseBecause`` and ``TrueBecause``. These
+automatically set the internal value to ``False`` and ``True`` respectively while still accepting the optional
+``because`` parameter.
+
+DoesNotInstantiate
+..................
+
+The ``DoesNotInstantiate`` class may be extended to prevent any class from be instantiated. This can be useful for
+settings and class-based constants.
+
+.. code-block:: python
+
+    from commonkit import DoesNotInstantiate
+
+    class MYSETTINGS(DoesNotInstantiate):
+        # ...
+
 """
 from .library import *
 
-__version__ = "0.27.0-d"
+__version__ = "0.28.0-d"
