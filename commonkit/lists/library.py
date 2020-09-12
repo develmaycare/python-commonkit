@@ -12,6 +12,7 @@ __all__ = (
     "safe_join",
     "sort_by",
     "split_csv",
+    "strange",
     "xor",
     "Loop",
 )
@@ -139,7 +140,7 @@ def sort_by(attribute, iterable, new=False, reverse=False):
 
     :returns: A new iterable when ``new`` is ``True``. Otherwise, ``None``.
 
-    This is a shortcut for using lambda functions sort sortation:
+    This is a shortcut for using lambda functions for sortation:
 
     .. code-block:: python
 
@@ -201,6 +202,24 @@ def split_csv(string, separator=",", smart=True):
     return a
 
 
+def strange(start, end, step=1):
+    """A sensible, or *standard* range that behaves as you would expect.
+
+    :param start: The start of the range.
+    :type start: int
+
+    :param end: The end of the range.
+    :type start: int
+
+    :param step: The increment to be applied.
+    :type step: int
+
+    :rtype: range
+
+    """
+    return range(start , end + 1, step)
+
+
 def xor(*values):
     """An `exclusive or`_ operation on a list of values.
 
@@ -227,7 +246,7 @@ class Loop(object):
         """Initialize a loop.
 
         :param values: The values to be iterated. This may be a list, tuple, or any iterable that acts as a linear
-                       sequence as a values.
+                       sequence.
 
         """
         self.count = 0

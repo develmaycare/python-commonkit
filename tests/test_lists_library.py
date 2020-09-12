@@ -134,6 +134,15 @@ def test_split_csv():
     assert isinstance(b[3], str)
 
 
+def test_strange():
+    a = list()
+    for i in strange(1, 10):
+        a.append(i)
+
+    assert a[0] == 1
+    assert a[-1] == 10
+
+
 def test_xor():
     assert xor(True, True, True, True) is False
     assert xor(True, True, True) is True

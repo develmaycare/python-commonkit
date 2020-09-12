@@ -142,6 +142,17 @@ Split a comma separated string into a list.
     a = "1, yes, 17.5, testing"
     print(split_csv(a))
 
+strange
+.......
+
+Produces a sensible, or *standard* range that behaves as you would expect.
+
+.. code-block:: python
+
+    from commonkit import strange
+
+    print(strange(1, 10))
+
 xor
 ...
 
