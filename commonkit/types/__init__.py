@@ -25,6 +25,26 @@ Determine if a given value is a boolean at run time.
     By default, a liberal number of values are used to test. If you *just* want ``True`` or ``False``, simply pass
     ``(True, False)`` as ``test_values``.
 
+is_decimal
+..........
+
+Determine if a given value is a decimal number.
+
+.. code-block:: python
+
+    from commonkit import is_decimal
+
+    assert is_decimal(True) is False
+    assert is_decimal("asdf") is False
+    assert is_decimal("17") is True
+    assert is_decimal(17) is True
+    assert is_decimal(17.17) is True
+    assert is_decimal(17.17000) is True
+
+.. important::
+    Float and integer values will return a positive match, so (if it matters), first call ``is_float()`` or
+    ``is_integer()`` to determine if the value is one of those types.
+
 is_email
 ........
 
@@ -116,6 +136,17 @@ Note that an unrecognized value will raise a value error.
     except ValueError:
         print('"%s" is not a boolean value.' % value)
 
+to_decimal
+..........
+
+Convert a value to a decimal number.
+
+.. code-block:: python
+
+    from commonkit import to_decimal
+
+    print(to_decimal("17.0001"))
+
 to_timedelta
 ............
 
@@ -160,4 +191,4 @@ value.
 """
 from .library import *
 
-__version__ = "0.26.0-d"
+__version__ = "0.27.0-d"

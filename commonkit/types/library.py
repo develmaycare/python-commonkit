@@ -1,8 +1,9 @@
 # Imports
 
 from datetime import timedelta
+from decimal import Decimal
 import six
-from ..regex import EMAIL_PATTERN, HUMAN_FRIENDLY_DURATION_PATTERN, STRICT_EMAIL_PATTERN
+from ..regex import DECIMAL_PATTERN, EMAIL_PATTERN, HUMAN_FRIENDLY_DURATION_PATTERN, STRICT_EMAIL_PATTERN
 from ..constants import BOOLEAN_VALUES, FALSE_VALUES, TRUE_VALUES
 
 # Exports
@@ -10,6 +11,7 @@ from ..constants import BOOLEAN_VALUES, FALSE_VALUES, TRUE_VALUES
 __all__ = (
     "boolean_safe",
     "is_bool",
+    "is_decimal",
     "is_email",
     "is_float",
     "is_integer",
@@ -17,6 +19,7 @@ __all__ = (
     "is_string",
     "smart_cast",
     "to_bool",
+    "to_decimal",
     "to_timedelta",
     "BooleanBecause",
     "FalseBecause",
@@ -69,6 +72,22 @@ def is_bool(value, test_values=BOOLEAN_VALUES):
 
     """
     return value in test_values
+
+
+@boolean_safe
+def is_decimal(value):
+    """Determine if the given value is a decimal number.
+
+    :param value: The value to be checked.
+
+    :rtype: bool
+
+    .. important::
+        Float and integer values will return a positive match, so (if it matters), first call ``is_float()`` or
+        ``is_integer()`` to determine if the value is one of those types.
+
+    """
+    return bool(DECIMAL_PATTERN.match(str(value)))
 
 
 def is_email(value, strict=False):
@@ -236,11 +255,38 @@ def to_bool(value, false_values=FALSE_VALUES, true_values=TRUE_VALUES):
     raise ValueError('"%s" cannot be converted to True or False.')
 
 
+def to_decimal(value, fail_silently=True, places=2):
+    """Convert a value to a decimal number.
+
+    :param value: The value to be converted.
+    :type value: float | int | str
+
+    :param fail_silently: Return ``None`` if the value is not a decimal.
+    :type fail_silently: bool
+
+    :param places: The number of decimal places to include.
+    :type places: int
+
+    :rtype: Decimal | None
+
+    :raises: A ``ValueError`` when the value is not a decimal and ``fail_silently`` is ``False``.
+
+    """
+    if not is_decimal(value):
+        if fail_silently:
+            return None
+
+        raise ValueError("The given value is no a decimal number: %s" % value)
+
+    d = Decimal(value)
+    return round(d, places)
+
+
 def to_timedelta(value):
     """Parse a duration string in a human "friendly" time format.
 
-    :param string: The string to be parsed. This may be in the format of `1d 1h 1m 1s` or any combination thereof.
-    :type string: str
+    :param value: The string to be parsed. This may be in the format of `1d 1h 1m 1s` or any combination thereof.
+    :type value: str
 
     :rtype: timedelta
 

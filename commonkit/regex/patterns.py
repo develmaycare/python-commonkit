@@ -5,6 +5,7 @@ import re
 # Exports
 
 __all__ = (
+    "DECIMAL_PATTERN",
     "EMAIL_PATTERN",
     "HUMAN_FRIENDLY_DURATION_PATTERN",
     "STRICT_EMAIL_PATTERN",
@@ -13,6 +14,8 @@ __all__ = (
 
 # Patterns
 
+DECIMAL_PATTERN = re.compile('''^-?(?:(?:[0-9]+(?:.[0-9]*)?)|(?:.[0-9]+))$''')
+"""A regex pattern which may be used to convert a string to a decimal number."""
 
 EMAIL_PATTERN = re.compile(r"[^@]+@[^@]+\.[^@]+", re.IGNORECASE)
 """A basic regex pattern for validating an email string."""

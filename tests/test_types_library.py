@@ -35,6 +35,15 @@ def test_is_bool():
     assert true_count == COUNT_2
 
 
+def test_is_decimal():
+    assert is_decimal(True) is False
+    assert is_decimal("asdf") is False
+    assert is_decimal("17") is True
+    assert is_decimal(17) is True
+    assert is_decimal(17.17) is True
+    assert is_decimal(17.17000) is True
+
+
 def test_is_email():
     assert is_email(17) is False
     assert is_email("bob@bob") is False
@@ -112,6 +121,20 @@ def test_to_bool():
 
     with pytest.raises(ValueError):
         to_bool(1.1)
+
+
+def test_to_decimal():
+    assert to_decimal(True) is None
+    assert to_decimal("asdf") is None
+
+    with pytest.raises(ValueError):
+        to_decimal("asdf", fail_silently=False)
+
+    assert isinstance(to_decimal("17"), Decimal)
+    assert isinstance(to_decimal("17.17"), Decimal)
+    assert isinstance(to_decimal(17), Decimal)
+    assert isinstance(to_decimal(17.17), Decimal)
+    assert isinstance(to_decimal(17.001), Decimal)
 
 
 def test_to_timedelta():
