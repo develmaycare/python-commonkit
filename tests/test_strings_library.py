@@ -12,6 +12,22 @@ EXAMPLE_TEMPLATE = """# {{ title|default("Example Template") }}
 # Tests
 
 
+def test_append_ordinal():
+    assert append_ordinal(1) == "1st"
+    assert append_ordinal(2) == "2nd"
+    assert append_ordinal(3) == "3rd"
+    assert append_ordinal(4) == "4th"
+    assert append_ordinal(5) == "5th"
+    assert append_ordinal(6) == "6th"
+    assert append_ordinal(7) == "7th"
+    assert append_ordinal(8) == "8th"
+    assert append_ordinal(9) == "9th"
+    assert append_ordinal(10) == "10th"
+    assert append_ordinal(11) == "11th"
+    assert append_ordinal(12) == "12th"
+    assert append_ordinal(13) == "13th"
+
+
 def test_base_convert():
     """Check conversion of various numbers."""
 

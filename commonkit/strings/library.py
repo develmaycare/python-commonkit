@@ -8,6 +8,7 @@ from ..regex import VARIABLE_NAME_PATTERN
 # Exports
 
 __all__ = (
+    "append_ordinal",
     "base_convert",
     "camelcase_to_underscore",
     "highlight_code",
@@ -25,6 +26,29 @@ __all__ = (
 )
 
 # Functions
+
+
+def append_ordinal(number):
+    """Add an ordinal string to an integer.
+
+    :param number: The number to be converted to an ordinal.
+    :type number: int
+
+    :rtype: str
+
+    """
+    suffixes = dict()
+    for i, v in enumerate(['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th']):
+        suffixes[str(i)] = v
+
+    v = str(number)
+
+    if v.endswith("11") or v.endswith("12") or v.endswith("13"):
+        return v + "th"
+    # if v in ['11', '12', '13']:
+    #     return v + 'th'
+
+    return v + suffixes[v[-1]]
 
 
 def base_convert(number, from_digits=BASE10, to_digits=BASE62):

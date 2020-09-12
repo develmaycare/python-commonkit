@@ -42,6 +42,19 @@ An error is raised if the dependency is not installed.
 Usage
 -----
 
+append_ordinal
+..............
+
+Add an ordinal string to an integer.
+
+.. code-block:: python
+
+    from commonkit import append_ordinal
+
+    print(append_ordinal(1))
+    print(append_ordinal(2))
+    print(append_ordinal(3))
+
 base_convert
 ............
 
@@ -224,4 +237,4 @@ Convert a string from ``under_score_case`` to ``Title Case``.
 """
 from .library import *
 
-__version__ = "0.24.0"
+__version__ = "0.25.0"
