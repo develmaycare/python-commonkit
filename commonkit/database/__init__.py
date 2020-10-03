@@ -15,8 +15,9 @@ No ORM is provided. Instead, a database is represented as an object with various
 Install
 -------
 
-The following will install SQLAlchemy. SQLite is supported by default. Specific database engines require additional,
-third-party packages:
+The following will install SQLAlchemy: ``pip install[database]``
+
+SQLite is supported by default. Specific database engines require additional, third-party packages:
 
 - MS SQL: ``pip install commonkit[mssql]``
 - Oracle: ``pip install commonkit[oracle]``
