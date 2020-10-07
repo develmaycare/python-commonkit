@@ -62,7 +62,11 @@ secure:
 
 #> tests - Run unit tests and generate coverage report.
 tests:
+	cd tests/watched && ln -s nonexistent.md
+	cd tests/watched && ln -s nonexistent.txt
 	coverage run --source=. -m pytest -s;
 	coverage html --directory=$(COVERAGE_PATH);
 	open $(COVERAGE_PATH)/index.html;
+	rm tests/watched/nonexistent.md;
+	rm tests/watched/nonexistent.txt;
 
