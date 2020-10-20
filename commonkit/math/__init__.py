@@ -31,6 +31,30 @@ Calculate the average of a given number of values, taking care to handle zero di
     values = [1, 2, 3, 4, 5]
     print(average(values))
 
+factors_of
+..........
+
+Get the factors of a given integer. A ``TypeError` is raised if the number is *not* an integer.
+
+.. code-block:: python
+
+    from commonkit import factors_of
+
+    print(factors_of(10))
+    print(factors_of(17))
+
+is_prime
+........
+
+Determine whether a given number is a prime number. Note that a non-integer will always return ``False``.
+
+.. code-block:: python
+
+    from commonkit import is_prime
+
+    print(is_prime(10))
+    print(is_prime(17))
+
 median
 ......
 
@@ -69,4 +93,4 @@ Multiple numbers.
 """
 from .library import *
 
-__version__ = "0.21.0-d"
+__version__ = "0.22.0-d"

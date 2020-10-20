@@ -9,6 +9,8 @@ import statistics
 __all__ = (
     "add",
     "average",
+    "factors_of",
+    "is_prime",
     "median",
     "percentage",
     "product",
@@ -47,7 +49,7 @@ def average(values, lazy=False):
 
     .. code-block:: python
 
-        from superpython.utils import average
+        from commonkit.utils import average
 
         values = [1, 2, 3, 4, 5]
         print(average(values))
@@ -60,6 +62,42 @@ def average(values, lazy=False):
         return float(sum(values) / len(values))
     except ZeroDivisionError:
         return 0.0
+
+
+def factors_of(number):
+    """Get the factors of a given number.
+
+    :param number: The number for which the factors will be obtained.
+    :type number: int
+
+    :rtype: list[int]
+    :raise: TypeError
+
+    """
+    if type(number) is not int:
+        raise TypeError("Factors may only be acquired for an integer.")
+
+    a = list()
+    for i in range(1, number + 1):
+        if number % i == 0:
+           a.append(i)
+
+    return a
+
+
+def is_prime(number):
+    """Determine whether the given number is a prime.
+
+    :param number: The number to be checked.
+    :type number: int
+
+    :rtype: bool
+
+    """
+    try:
+        return len(factors_of(number)) == 2
+    except TypeError:
+        return False
 
 
 def median(values):
@@ -91,7 +129,7 @@ def percentage(portion, total):
 
     .. code-block:: python
 
-        from superpython.utils import percentage
+        from commonkit.utils import percentage
 
         p = percentage(50, 100)
         print(p + "%")

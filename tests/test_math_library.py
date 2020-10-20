@@ -1,4 +1,5 @@
 from commonkit.math.library import *
+import pytest
 
 # Tests
 
@@ -29,6 +30,49 @@ def test_average():
 
     a = average([0, 5, 0, 0, 3, 1, 15, 0, 12], lazy=True)
     assert a == 7.2
+
+
+def test_factors_of():
+
+    with pytest.raises(TypeError):
+        factors_of(20.20)
+
+    numbers = {
+        5: [1, 5],
+        6: [1, 2, 3, 6],
+        7: [1, 7],
+        10: [1, 2, 5, 10],
+        15: [1, 3, 5, 15],
+        17: [1, 17],
+        20: [1, 2, 4, 5, 10, 20],
+        21: [1, 3, 7, 21],
+        24: [1, 2, 3, 4, 6, 8, 12, 24],
+        40: [1, 2, 4, 5, 8, 10, 20, 40],
+        144: [1, 2, 3, 4, 6, 8, 9, 12, 16, 18, 24, 36, 48, 72, 144],
+    }
+    for number, values in numbers.items():
+        factors = factors_of(number)
+        assert factors == values
+
+
+def test_is_prime():
+    numbers = {
+        5: True,
+        6: False,
+        7: True,
+        10: False,
+        15: False,
+        17: True,
+        20: False,
+        21: False,
+        24: False,
+        40: False,
+        144: False,
+    }
+    for number, prime in numbers.items():
+        assert is_prime(number) == prime
+
+    assert is_prime(20.20) is False
 
 
 def test_median():
