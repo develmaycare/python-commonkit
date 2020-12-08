@@ -34,7 +34,7 @@ Calculate the average of a given number of values, taking care to handle zero di
 factors_of
 ..........
 
-Get the factors of a given integer. A ``TypeError` is raised if the number is *not* an integer.
+Get the factors of a given integer. A ``TypeError`` is raised if the number is *not* an integer.
 
 .. code-block:: python
 

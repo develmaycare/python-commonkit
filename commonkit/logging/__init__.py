@@ -5,6 +5,9 @@ Abstract
 Python logging is powerful but can be daunting to get started. This library implements some basic formatters and a
 helper class that makes logging a bit easier.
 
+Usage
+-----
+
 Using the Logging Helper
 ........................
 

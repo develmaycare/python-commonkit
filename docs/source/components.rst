@@ -44,6 +44,11 @@ Lists
 
 .. automodule:: commonkit.lists
 
+Loading
+=======
+
+.. automodule:: commonkit.loading
+
 Logging
 =======
 

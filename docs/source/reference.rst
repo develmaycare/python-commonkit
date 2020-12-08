@@ -160,6 +160,14 @@ lists
     :show-inheritance:
     :special-members: __init__
 
+loading
+=======
+
+.. automodule:: commonkit.loading.library
+    :members:
+    :show-inheritance:
+    :special-members: __init__
+
 logging
 =======
 
