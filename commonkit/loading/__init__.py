@@ -95,6 +95,8 @@ There may be cases where you want to work with a module as an instance, rather t
 
 Consider extending ``Module`` and customizing the ``_load()`` method to do additional handling on ``load()``.
 
+For example,wWe've used this approach to generate dynamic documentation.
+
 """
 __version__ = "0.1.0-d"
 
