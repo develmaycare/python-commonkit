@@ -149,6 +149,17 @@ Convert a value to a decimal number.
 
     print(to_decimal("17.0001"))
 
+to_ordered_dict
+...............
+
+Given a dictionary with simple key/value pairs, sort the values into an ``OrderedDict``.
+
+.. code-block:: python
+
+    from commonkit import to_ordered_dict
+
+
+
 to_timedelta
 ............
 
@@ -210,4 +221,4 @@ settings and class-based constants.
 """
 from .library import *
 
-__version__ = "0.28.1-d"
+__version__ = "0.29.0-d"

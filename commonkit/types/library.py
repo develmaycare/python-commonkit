@@ -1,7 +1,9 @@
 # Imports
 
+from collections import OrderedDict
 from datetime import timedelta
 from decimal import Decimal
+import operator
 import six
 from ..regex import DECIMAL_PATTERN, EMAIL_PATTERN, HUMAN_FRIENDLY_DURATION_PATTERN, STRICT_EMAIL_PATTERN
 from ..constants import BOOLEAN_VALUES, FALSE_VALUES, TRUE_VALUES
@@ -20,6 +22,7 @@ __all__ = (
     "smart_cast",
     "to_bool",
     "to_decimal",
+    "to_ordered_dict",
     "to_timedelta",
     "BooleanBecause",
     "DoesNotInstantiate",
@@ -284,6 +287,27 @@ def to_decimal(value, fail_silently=True, places=2):
 
     d = Decimal(value)
     return round(d, places)
+
+
+def to_ordered_dict(dictionary):
+    """Given a dictionary of simple key/value pairs, sort the values into an ``OrderedDict``.
+
+    :param dictionary: The dictionary to be sorted.
+    :type dictionary: dict
+
+    :rtype: OrderedDict
+
+    :raise: TypeError
+    :raises: A ``TypeError`` if the values are not all of the same type.
+
+    """
+    tuples = sorted(dictionary.items(), key=operator.itemgetter(1))
+
+    d = OrderedDict()
+    for k, v in tuples:
+        d[k] = v
+
+    return d
 
 
 def to_timedelta(value):

@@ -137,6 +137,42 @@ def test_to_decimal():
     assert isinstance(to_decimal(17.001), Decimal)
 
 
+def test_to_ordered_dict():
+    d = {
+        'c': 3,
+        'a': 1,
+        'b': 2,
+        'e': 5,
+        'd': 4,
+        'f': 6,
+        'g': 7,
+    }
+    s = to_ordered_dict(d)
+    assert list(s.keys()) == ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+    assert list(s.values()) == [1, 2, 3, 4, 5, 6, 7]
+
+    d = {
+        'c': "zxcv",
+        'a': "asdf",
+        'b': "qwer",
+    }
+    s = to_ordered_dict(d)
+    assert list(s.keys()) == ['a', 'b', 'c']
+    assert list(s.values()) == ["asdf", "qwer", "zxcv"]
+
+    d = {
+        'c': "qwer",
+        'a': "asdf",
+        'b': "zxcv",
+        'e': 5,
+        'd': 4,
+        'f': 6,
+        'g': 7,
+    }
+    with pytest.raises(TypeError):
+        to_ordered_dict(d)
+
+
 def test_to_timedelta():
     d = to_timedelta("17m")
     assert d.seconds == 1020
