@@ -24,6 +24,38 @@ def test_get_packages():
     assert len(packages) == 3
 
 
+def test_has_callable():
+    class NoCallable(object):
+        pass
+
+    instance = NoCallable()
+    assert has_callable(instance, "testing") is False
+
+    class YesCallable(object):
+        @classmethod
+        def class_testing(cls):
+            return True
+
+        @staticmethod
+        def static_testing():
+            return True
+
+        def testing(self):
+            return True
+
+        @property
+        def also_testing(self):
+            return self.testing()
+
+    instance = YesCallable()
+    assert has_callable(instance, "testing") is True
+    assert has_callable(instance, "also_testing") is False
+    assert has_callable(instance, "nonexistent") is False
+    assert has_callable(YesCallable, "testing") is True
+    assert has_callable(YesCallable, "class_testing") is True
+    assert has_callable(YesCallable, "static_testing") is True
+
+
 def test_import_member():
     with pytest.raises(ImportError):
         import_member("nonexistent")

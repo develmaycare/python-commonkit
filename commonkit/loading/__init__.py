@@ -12,6 +12,24 @@ utilities for making this a bit easier.
 Usage
 -----
 
+Determine if an Instance Has a Callable
+.......................................
+
+Use the ``has_callable()`` function to determine if an instance has a callable method.
+
+.. code-block:: python
+
+    from commonkit import has_callable
+
+    class MyWhatever(object):
+        def testing(self):
+            return True
+
+    instance = MyWhatever()
+    print(has_callable(instance, "testing")
+
+Note this also works for classes, class methods, and static methods.
+
 Discovering Modules
 ....................
 
@@ -98,6 +116,6 @@ Consider extending ``Module`` and customizing the ``_load()`` method to do addit
 For example,wWe've used this approach to generate dynamic documentation.
 
 """
-__version__ = "0.1.0-d"
+__version__ = "0.2.0-d"
 
 from .library import *

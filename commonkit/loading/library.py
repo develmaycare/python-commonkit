@@ -8,6 +8,7 @@ from importlib.util import find_spec
 __all__ = (
     "autodiscover",
     "find_packages",
+    "has_callable",
     "import_member",
     "submodule_exists",
     "Module",
@@ -61,6 +62,24 @@ def find_packages(path):
             a.append(dotted)
 
     return a
+
+
+def has_callable(instance, name):
+    """Indicates whether a given instance has the named callable.
+
+    :param instance: The instance to be checked.
+
+    :param name: The name to be confirmed as a callable.
+    :type name: str
+
+    :rtype: bool
+
+    """
+    if not hasattr(instance, name):
+        return False
+
+    method = getattr(instance, name)
+    return callable(method)
 
 
 def import_member(dotted_path, raise_exception=True):
