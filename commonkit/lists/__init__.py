@@ -66,6 +66,44 @@ Flatten a list, tuple, or other iterable so that nested iterables are combined i
     b = flatten(a)
     print(b)
 
+pick
+....
+
+Pick a value from a dictionary, list, tuple, or object.
+
+.. code-block:: python
+
+    from commonkit import pick
+
+    d = {
+        'one': 1,
+        'two': 2,
+        'three': 3,
+    }
+    print(pick("two", d))
+
+The index number of lists and tuples is starts at 1 and not 0.
+
+.. code-block:: python
+
+    a = [1, 2, 3, 4, 5]
+    print(pick(3, a))
+
+Dictionary attributes that are nested within a dictionary may be given in a dot-form. For example:
+
+.. code-block:: python
+
+    d = {
+        'one': {'a': 1, 'b': 2, 'c': 3},
+        'two': {'d': 4, 'e': 5, 'f': 6},
+        'three': {
+            'g': {'seven': 7, 'eight': 8, 'nine': 9},
+            'h': {'ten': 10}
+        }
+    }
+
+    print(pick('three.seven', d))
+
 safe_join
 .........
 
@@ -197,4 +235,4 @@ Resources
 """
 from .library import *
 
-__version__ = "0.24.0-d"
+__version__ = "0.25.0-d"

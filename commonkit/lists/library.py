@@ -1,6 +1,7 @@
 # Imports
 
 from functools import reduce
+import operator
 from ..types import smart_cast
 
 # Exports
@@ -9,6 +10,7 @@ __all__ = (
     "any_list_item",
     "filter_by",
     "flatten",
+    "pick",
     "safe_join",
     "sort_by",
     "split_csv",
@@ -106,6 +108,64 @@ def flatten(iterable):
         return sum(iterator, next(iterator))
     except StopIteration:
         return []
+
+
+def pick(attribute, source, default=None):
+    """Get the named or numbered attribute from source data.
+
+    :param attribute: The attribute name (for dictionaries and objects) or index number (for lists and tuples).
+    :type attribute: int | str
+
+    :param source: The source data; a dict, list, tuple, or object.
+
+    :param default: The default value if the attribute is not found or is ``None``.
+
+    :returns: The value of the attribute.
+
+    The index number of lists and tuples is starts at 1 and not 0.
+
+    Dictionary attributes that are nested within a dictionary may be given in a dot-form. For example:
+
+    .. code-block:: python
+
+        d = {
+            'one': {'a': 1, 'b': 2, 'c': 3},
+            'two': {'d': 4, 'e': 5, 'f': 6},
+            'three': {
+                'g': {'seven': 7, 'eight': 8, 'nine': 9},
+                'h': {'ten': 10}
+            }
+        }
+
+        value = pick('three.seven', d)
+        print(value)
+
+    """
+    if type(source) is dict:
+        if "." in attribute:
+            keys = attribute.split(".")
+            try:
+                value = reduce(operator.getitem, keys, source)
+            except KeyError:
+                value = None
+
+            return value or default
+
+        return source.get(attribute, default)
+
+    if type(source) in (list, tuple):
+        try:
+            value = source[attribute - 1]
+        except IndexError:
+            value = None
+
+        return value or default
+
+    value = None
+    if hasattr(source, attribute):
+        value = getattr(source, attribute)
+
+    return value or default
 
 
 def safe_join(separator, values):

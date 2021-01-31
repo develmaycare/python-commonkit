@@ -75,6 +75,53 @@ def test_flatten():
     assert len(d) == 0
 
 
+def test_pick():
+    class Test(object):
+
+        def __init__(self, **kwargs):
+            self.name = "testing"
+            self._attrs = kwargs
+
+        def __getattr__(self, item):
+            return self._attrs.get(item)
+
+    d = {
+        'one': 1,
+        'two': 2,
+        'three': 3,
+    }
+
+    assert pick("two", d) == 2
+    assert pick("four", d) is None
+
+    t = Test(one=1, two=2, three=3)
+    assert pick("name", t) == "testing"
+    assert pick("nonexistent", t) is None
+    assert pick("three", t) == 3
+    assert pick("five", t, default=5) == 5
+
+    d2 = {
+        'one': {'a': 1, 'b': 2, 'c': 3},
+        'two': {'d': 4, 'e': 5, 'f': 6},
+        'three': {
+            'g': {'seven': 7, 'eight': 8, 'nine': 9},
+            'h': {'ten': 10}
+        }
+    }
+
+    assert pick("two.f", d2) == 6
+    assert pick("three.g.eight", d2) == 8
+    assert pick("three.h.ten", d2) == 10
+    assert pick("three.i.eleven", d2) is None
+    assert pick("three.i.twelve", d2, default=12) == 12
+
+    a = [1, 2, 3, 4, 5]
+    assert pick(1, a) == 1
+    assert pick(5, a) == 5
+    assert pick(6, a) is None
+    assert pick(7, a, default=7) == 7
+
+
 def test_safe_join():
     string = safe_join(",", [1, "two", 3.4, "five"])
     assert string == "1,two,3.4,five"
