@@ -31,6 +31,19 @@ Calculate the average of a given number of values, taking care to handle zero di
     values = [1, 2, 3, 4, 5]
     print(average(values))
 
+difference
+..........
+
+Calculate the percentage difference between two numbers.
+
+.. code-block:: python
+
+    from commonkit import difference
+
+    v1 = 1000
+    v2 = 1200
+    print(difference(v1, v2))
+
 factors_of
 ..........
 
@@ -93,4 +106,4 @@ Multiple numbers.
 """
 from .library import *
 
-__version__ = "0.22.0-d"
+__version__ = "0.23.0-d"

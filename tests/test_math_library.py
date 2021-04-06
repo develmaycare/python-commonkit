@@ -32,6 +32,17 @@ def test_average():
     assert a == 7.2
 
 
+def test_difference():
+    result = difference(1000, 1200)
+    assert result == 18.18
+
+    result = difference(1000, 1200, absolute=False)
+    assert result == -18.18
+
+    result = difference(0, 0)
+    assert result == 0.0
+
+
 def test_factors_of():
 
     with pytest.raises(TypeError):

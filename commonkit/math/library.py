@@ -9,6 +9,7 @@ import statistics
 __all__ = (
     "add",
     "average",
+    "difference",
     "factors_of",
     "is_prime",
     "median",
@@ -22,7 +23,7 @@ __all__ = (
 def add(values, base=None):
     """Add values together.
 
-    :param values: An iterable of values to be multiplied. Unlike ``sum``, these may be of different types.
+    :param values: An iterable of values to be added. Unlike ``sum``, these may be of different types.
 
     :param base: Applied to the beginning of the calculation.
     :type base: int
@@ -62,6 +63,52 @@ def average(values, lazy=False):
         return float(sum(values) / len(values))
     except ZeroDivisionError:
         return 0.0
+
+
+def difference(value1, value2, absolute=True, precision=2):
+    """Get the difference between two numbers expressed as a percentage.
+
+    :param value1: The first number to be evaluated.
+    :param value1: float | int
+
+    :param value2: The second number to be evaluated.
+    :param value2: float | int
+
+    :param absolute: Indicates the absolute value of the difference should be returned. Otherwise, the result may be a
+                     negative float or integer.
+    :param absolute: bool
+
+    :param precision: The rounding precision of the resulting float.
+    :type precision: int
+
+    :rtype: float
+
+    The formula applied is:
+
+    .. code-block:: text
+
+        (
+            value1 - value2
+            _______
+            (value1 + value2) / 2
+        ) * 100
+
+    """
+    if value1 == value2:
+        return 0.0
+
+    a = value1 - value2
+    b = (value1 + value2) / 2
+
+    # This should only happen when the two values are equal which is handled above.
+    # if int(b) == 0:
+    #     return 0.0
+
+    result = (a / b) * 100
+    if absolute:
+        return round(abs(result), precision)
+
+    return round(result, precision)
 
 
 def factors_of(number):
