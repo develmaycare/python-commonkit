@@ -66,6 +66,17 @@ Flatten a list, tuple, or other iterable so that nested iterables are combined i
     b = flatten(a)
     print(b)
 
+get_nested_value
+................
+
+Get a nested value from a dictionary. This is especially useful for YAML or similarly generated dictionaries.
+
+.. code-block:: python
+
+    from commonkit import get_nested_value
+
+
+
 pick
 ....
 
@@ -235,4 +246,4 @@ Resources
 """
 from .library import *
 
-__version__ = "0.25.0-d"
+__version__ = "0.26.0-d"

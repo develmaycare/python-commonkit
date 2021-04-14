@@ -10,6 +10,7 @@ __all__ = (
     "any_list_item",
     "filter_by",
     "flatten",
+    "get_nested_value",
     "pick",
     "safe_join",
     "sort_by",
@@ -108,6 +109,34 @@ def flatten(iterable):
         return sum(iterator, next(iterator))
     except StopIteration:
         return []
+
+
+def get_nested_value(dictionary, *keys, default=None):
+    """Get the value of a key from a nested dictionary.
+
+    :param dictionary: The nested dictionary.
+    :type dictionary: dict
+
+    :param default: The default value.
+
+    .. tip::
+        Be careful when supplying a default value. This will cover errors in when specifying ``keys``.
+
+    """
+    _keys = list(keys)
+    try:
+        # http://stackoverflow.com/a/14692747/355230
+        return reduce(lambda d, k: d[k], _keys, dictionary)
+    except KeyError:
+        if default is not None:
+            return default
+
+        raise
+    except TypeError:
+        if default is not None:
+            return default
+
+        raise KeyError("%s" % _keys[-1])
 
 
 def pick(attribute, source, default=None):

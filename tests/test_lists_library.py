@@ -1,3 +1,5 @@
+import pytest
+
 from commonkit.lists.library import *
 
 # Supporting
@@ -73,6 +75,43 @@ def test_flatten():
     c = []
     d = flatten(c)
     assert len(d) == 0
+
+
+def test_get_nested_value():
+    d = {
+        'projects.Project': {
+            'source': {
+                'name': "project",
+                'type': "csv",
+                'path': "/path/to/file.csv",
+            },
+            'options': {
+                'auto_mapping': True,
+                'none_type_values': ["-", "NA"]
+            },
+            'fields': {
+                'title': {
+                    'default': "Untitled",
+                },
+                'description': {
+                    'transforms': {
+                        'strip': True,
+                    }
+                }
+            }
+        }
+    }
+
+    assert get_nested_value(d, "projects.Project", "source", "type") == "csv"
+    assert type(get_nested_value(d, "projects.Project", "fields")) is dict
+    with pytest.raises(KeyError):
+        get_nested_value(d, "projects.Project", "nonexistent", "type")
+
+    with pytest.raises(KeyError):
+        get_nested_value(d, "projects.Project", "source", "type", "nonexistent")
+
+    assert get_nested_value(d, "projects.Project", "nonexistent", "type", default="testing") == "testing"
+    assert get_nested_value(d, "projects.Project", "source", "type", "nonexistent", default="testing") == "testing"
 
 
 def test_pick():
