@@ -53,6 +53,13 @@ def test_is_email():
     assert is_email("bob@bob.com", strict=True) is True
 
 
+def test_is_empty():
+
+    assert is_empty("") is True
+    assert is_empty(" ") is True
+    assert is_empty("testing") is False
+
+
 def test_is_float():
     """Check that float recognition works as expected."""
 
@@ -77,6 +84,23 @@ def test_is_integer():
     assert is_integer("asdf", cast=True) is False
 
 
+def test_is_magic_name():
+
+    assert is_magic_name("__testing__") is True
+    assert is_magic_name("__t__") is True
+    assert is_magic_name("_testing") is False
+    assert is_magic_name("_testing_") is False
+
+
+def test_is_nothing():
+
+    assert is_nothing(None) is True
+    assert is_nothing("") is True
+    assert is_nothing(0) is True
+    assert is_nothing(0.0) is True
+    assert is_nothing(0.1) is False
+
+
 def test_is_number():
     assert is_number(True) is False
     assert is_number(False) is False
@@ -92,6 +116,16 @@ def test_is_string():
     assert is_string("testing") is True
     assert is_string("17") is True
 
+
+def test_is_variable_name():
+
+    assert is_variable_name("123") is False
+    assert is_variable_name("testing123") is True
+    assert is_variable_name("testing_123") is True
+    assert is_variable_name("testing_123_") is True
+    assert is_variable_name("_testing_123") is True
+    assert is_variable_name("_testing_123_") is True
+    assert is_variable_name("__testing_123__") is True
 
 def test_smart_cast():
     """Check that values are correctly cast to a Python data type."""

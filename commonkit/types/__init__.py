@@ -59,6 +59,18 @@ Determine if a given value is a valid email address.
     print(is_email("bob@bob"))
     print(is_email("bob@bob.com"))
 
+is_empty
+........
+
+Determine whether a string is empty or a blank space.
+
+.. code-block:: python
+
+    from commonkit import is_empty
+
+    print(is_empty(""))
+    print(is_empty(" "))
+
 is_float
 ........
 
@@ -84,6 +96,31 @@ Indicates whether the given value is an integer. Saves a little typing.
     print(is_integer(17.5))
     print(is_integer("17"))
     print(is_integer("17", cast=True))
+
+is_magic_name
+.............
+
+Indicates whether a given string is a valid Python magic name, e.g. ``__name__``.
+
+.. code-block:: python
+
+    from commonkit import is_magic_name
+
+    print(is_magic_name("_testing"))
+    print(is_magic_name("__testing__"))
+
+is_nothing
+...........
+
+Indicates whether a variable has any appreciable value. This will return ``True`` for integers an floats that are zero,
+for zero-length strings, and for ``None``.
+
+.. code-block:: python
+
+    from commonkit import is_nothing
+
+    var = ""
+    print(is_nothing(var))
 
 is_number
 .........
@@ -111,6 +148,18 @@ Indicates whether the given value is a string. Saves a little typing.
     print(is_string("testing"))
     print(is_string("17"))
     print(is_string(17))
+
+is_variable_name
+................
+
+Indicates whether a given string is a valid Python variable name.
+
+.. code-block:: python
+
+    from commonkit import is_variable_name
+
+    print(is_variable_name("123"))
+    pritn(is_variable_name("testing123"))
 
 to_bool
 .......
@@ -157,8 +206,6 @@ Given a dictionary with simple key/value pairs, sort the values into an ``Ordere
 .. code-block:: python
 
     from commonkit import to_ordered_dict
-
-
 
 to_timedelta
 ............
@@ -221,4 +268,4 @@ settings and class-based constants.
 """
 from .library import *
 
-__version__ = "0.29.0-d"
+__version__ = "0.30.0-d"

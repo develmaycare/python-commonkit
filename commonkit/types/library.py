@@ -5,7 +5,8 @@ from datetime import timedelta
 from decimal import Decimal
 import operator
 import six
-from ..regex import DECIMAL_PATTERN, EMAIL_PATTERN, HUMAN_FRIENDLY_DURATION_PATTERN, STRICT_EMAIL_PATTERN
+from ..regex import DECIMAL_PATTERN, EMAIL_PATTERN, HUMAN_FRIENDLY_DURATION_PATTERN, STRICT_EMAIL_PATTERN, \
+    VARIABLE_NAME_PATTERN
 from ..constants import BOOLEAN_VALUES, FALSE_VALUES, TRUE_VALUES
 
 # Exports
@@ -15,10 +16,14 @@ __all__ = (
     "is_bool",
     "is_decimal",
     "is_email",
+    "is_empty",
     "is_float",
     "is_integer",
+    "is_magic_name",
+    "is_nothing",
     "is_number",
     "is_string",
+    "is_variable_name",
     "smart_cast",
     "to_bool",
     "to_decimal",
@@ -117,6 +122,22 @@ def is_email(value, strict=False):
     return bool(EMAIL_PATTERN.match(value))
 
 
+def is_empty(value):
+    """Indicates whether a given value is an empty string or blank space.
+
+    :param value: The value to be checked. A string is expected, but the value will be forced to a string before
+                  checking.
+
+    :rtype: bool
+
+    """
+    conditions = [
+        str(value).isspace(),
+        len(str(value)) == 0,
+    ]
+    return any(conditions)
+
+
 @boolean_safe
 def is_float(value):
     """Indicates whether the given value is a float.
@@ -174,6 +195,45 @@ def is_integer(value, cast=False):
     return False
 
 
+def is_magic_name(value):
+    """Indicates whether a given string is a valid Python magic name.
+
+    :param value: The value to be tested.
+    :type value: str
+
+    :rtype: bool
+
+    """
+    conditions = [
+        is_variable_name(value),
+        len(value) >= 5,
+        value[:2] == "__",
+        value[-2:] == "__",
+    ]
+    return all(conditions)
+
+
+def is_nothing(value):
+    """Indicates whether a given variable has no appreciable value, e.g. an empty string, ``None``, or a zero.
+
+    :param value: The value to be checked.
+
+    :rtype: bool
+
+    .. note::
+        Unlike ``is_empty()`` blank spaces are *not* included in the test because (for example) a space *can* add
+        characters to a string.
+
+    """
+    conditions = [
+        value is None,
+        len(str(value)) == 0,
+        value == 0,
+        value == 0.0,
+    ]
+    return any(conditions)
+
+
 @boolean_safe
 def is_number(value):
     """Indicates whether a given value is a number; a decimal, float, or integer.
@@ -208,6 +268,18 @@ def is_string(value):
 
     """
     return isinstance(value, six.string_types)
+
+
+def is_variable_name(value):
+    """Indicates whether a given string is a valid Python variable name.
+
+    :param value: The value to be tested.
+    :type value: str
+
+    :rtype: bool
+
+    """
+    return bool(VARIABLE_NAME_PATTERN.match(value))
 
 
 def smart_cast(value):

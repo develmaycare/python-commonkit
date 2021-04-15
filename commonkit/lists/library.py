@@ -120,7 +120,7 @@ def get_nested_value(dictionary, *keys, default=None):
     :param default: The default value.
 
     .. tip::
-        Be careful when supplying a default value. This will cover errors in when specifying ``keys``.
+        Be careful when supplying a default value. This will cover errors when specifying ``keys``.
 
     """
     _keys = list(keys)
