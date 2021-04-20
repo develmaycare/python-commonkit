@@ -15,6 +15,7 @@ __all__ = (
     "append_file",
     "copy_file",
     "copy_tree",
+    "get_files",
     "parse_jinja_template",
     "read_csv",
     "read_file",
@@ -135,6 +136,44 @@ def copy_tree(from_path, to_path):
                 logger.warning("Could not copy %s: %s" % (source_file, e))
 
     return success
+
+
+def get_files(path, extension=None, raise_exception=True):
+    """Get files found in a given directory.
+
+    :param path: The path to the directory.
+    :type path: str
+
+    :param extension: Filter by the given file extension.
+    :type extension: str
+
+    :param raise_exception: Raise an exception if the path is not a directory. Otherwise, an empty list is returned.
+    :type raise_exception: bool
+
+    :raise: ValueError
+
+    :rtype: list[str]
+    :returns: A list of file names.
+
+    """
+    if not os.path.isdir(path):
+        if raise_exception:
+            raise ValueError("The path provided to get_files() must be a directory.")
+
+        return list()
+
+    a = list()
+    for f in os.listdir(path):
+        _path = os.path.join(path, f)
+        if not os.path.isfile(_path):
+            continue
+
+        if extension is not None and not f.endswith(extension):
+            continue
+
+        a.append(f)
+
+    return a
 
 
 def parse_jinja_template(path, context):

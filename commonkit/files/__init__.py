@@ -52,6 +52,17 @@ Recursively copy a source directory to a given destination.
     success = copy_tree("from/path", "to/path")
     print(success)
 
+get_files
+.........
+
+Get the file names in a a given directory.
+
+.. code-block:: python
+
+    from commonkit import get_files
+
+    files = get_files("path/to/location")
+
 parse_jinja_template
 ....................
 
@@ -142,4 +153,4 @@ For more robust handling of paths, see `pathlib`_.
 """
 from .library import *
 
-__version__ = "0.21.0-d"
+__version__ = "0.22.0-d"

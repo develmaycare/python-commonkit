@@ -1,6 +1,9 @@
 import logging
 import os
 import shutil
+
+import pytest
+
 from commonkit.files.library import *
 
 # Tests
@@ -65,6 +68,23 @@ def test_copy_tree(caplog):
         assert success is False
 
     shutil.rmtree(to_path)
+
+
+def test_get_files():
+
+    path = os.path.join("tests", "config", "example.cfg")
+    with pytest.raises(ValueError):
+        get_files(path)
+
+    assert len(get_files("nonexistent", raise_exception=False)) == 0
+
+    path = os.path.join("tests", "config")
+    files = get_files(path)
+    assert len(files) == 12
+
+    path = os.path.join("tests", "config")
+    files = get_files(path, extension=".ini")
+    assert len(files) == 4
 
 
 def test_parse_jinja_template():
