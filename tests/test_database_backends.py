@@ -5,6 +5,7 @@ from commonkit.database.backends.oracle import Oracle
 from commonkit.database.backends.pgsql import Postgres
 from commonkit.database.backends.sqlite import SQLite
 from commonkit.database.exceptions import ResourceClosedError
+from commonkit.database.factory import load_database
 from commonkit.database.library import Session
 import os
 import pytest
@@ -37,6 +38,19 @@ class TestBackend(object):
         path = os.path.join("tests", "tmp.db")
         b = Fake(path=path)
         assert b.path == "tests/tmp.db"
+
+    def test_get_column_names(self, database_handle):
+        path = os.path.join("tests", "tmp.db")
+        db = load_database("sqlite", path=path)
+
+        columns = db.backend.get_columns("test_page")
+        assert type(columns) is list
+        assert "title" in columns
+
+        columns = db.backend.get_columns("test_page", verbose=True)
+        assert type(columns) is list
+        assert type(columns[0]) is dict
+        assert columns[0]['name'] == "id"
 
     def test_get_database_name(self):
         path = os.path.join("tests", "tmp.db")

@@ -55,6 +55,29 @@ class Backend(object):
         self.engine.dispose()
         self.is_open = False
 
+    def get_columns(self, table, verbose=False):
+        """Get columns for a given table.
+
+        :param table: The name of the table.
+        :type table: str
+
+        :param verbose: When ``True``, a list of column meta data dictionaries is returned.
+        :type verbose: bool
+
+        :rtype: list[str] | list[dict]
+
+        """
+        columns = inspect(self.engine).get_columns(table)
+
+        if verbose:
+            return columns
+
+        a = list()
+        for c in columns:
+            a.append(c['name'])
+
+        return a
+
     def get_database_name(self):
         """Get the name of the database.
 
