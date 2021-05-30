@@ -33,7 +33,10 @@ dist:
 docs: lines
 	cd docs && make dirhtml;
 	cd docs && make html;
+	cd docs && make json;
 	cd docs && make coverage;
+	mkdir docs/build/json/coverage;
+	cp docs/build/html/coverage/index.html docs/build/json/coverage/;
 	open docs/build/coverage/python.txt;
 	open docs/build/html/index.html;
 

@@ -2,7 +2,8 @@
 Abstract
 --------
 
-Working with files and directories is a common requirement. The files module provides utility functions for common patterns of file and directory manipulation.
+Working with files and directories is a common requirement. The files module provides utility functions for common
+patterns of file and directory manipulation.
 
 Install
 -------
@@ -133,7 +134,7 @@ Write a file.
 The File Class
 ..............
 
-The :py:class:`commonkit.library.File` class is a simple helper for working with the various attributes of a
+The :py:class:`commonkit.files.library.File` class is a simple helper for working with the various attributes of a
 given file path.
 
 For more robust handling of paths, see `pathlib`_.

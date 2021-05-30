@@ -53,8 +53,8 @@ Full shell support requires colorama and tabulate:
 
 .. code-block:: bash
 
-    pip install colorama; for shell.feedback
-    pip install tabulate; for shell.tables
+    pip install colorama; # for shell.feedback
+    pip install tabulate; # for shell.tables
 
 Or use ``pip install commonkit[shell]``.
 

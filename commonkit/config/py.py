@@ -17,6 +17,15 @@ class PythonConfig(Base):
     """Load configuration from a Python file."""
 
     def __init__(self, path, defaults=None):
+        """Initialize a Python file as configuration data.
+
+        :param path: The path to the file.
+        :type path: str
+
+        :param defaults: Defaults values.
+        :type defaults: dict
+
+        """
         self._defaults = defaults or dict()
         self._module = None
 
@@ -58,7 +67,11 @@ class PythonConfig(Base):
         return False
 
     def load(self):
-        """Load configuration from a Python file."""
+        """Load configuration from a Python file.
+
+        :rtype: bool
+
+        """
         if not self.exists:
             return False
 

@@ -3,7 +3,7 @@ Abstract
 --------
 
 Working with Python types, especially at runtime when a given variable type is unknown, is an essential programming
-activity. This types module provides flexible type detection and "smart" casting to dynamically coerce data to the most
+activity. The types module provides flexible type detection and "smart" casting to dynamically coerce data to the most
 appropriate type.
 
 Usage
@@ -25,7 +25,7 @@ Determine if a given value is a boolean at run time.
 
 .. tip::
     By default, a liberal number of values are used to test. If you *just* want ``True`` or ``False``, simply pass
-    ``(True, False)`` as ``test_values``.
+    ``test_values=(True, False)``.
 
 is_decimal
 ..........
@@ -112,7 +112,7 @@ Indicates whether a given string is a valid Python magic name, e.g. ``__name__``
 is_nothing
 ...........
 
-Indicates whether a variable has any appreciable value. This will return ``True`` for integers an floats that are zero,
+Indicates whether a variable has any appreciable value. This will return ``True`` for integers and floats that are zero,
 for zero-length strings, and for ``None``.
 
 .. code-block:: python
@@ -207,6 +207,17 @@ Given a dictionary with simple key/value pairs, sort the values into an ``Ordere
 
     from commonkit import to_ordered_dict
 
+    d = {
+        'c': 3,
+        'a': 1,
+        'b': 2,
+        'e': 5,
+        'd': 4,
+        'f': 6,
+        'g': 7,
+    }
+    print(to_ordered_dict(d))
+
 to_timedelta
 ............
 
@@ -245,7 +256,7 @@ value.
 
     from commonkit import BooleanBecause
 
-    value = BooleanBecause(False, because="it's just not true.")
+    value = BooleanBecause(False, because="it's just not true")
     print(value)
 
 There are two convenience classes that extend ``BooleanBecause``: ``FalseBecause`` and ``TrueBecause``. These

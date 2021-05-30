@@ -13,12 +13,12 @@ class Base(object):
     loading or parsing a configuration. It is up to the child class to implement the ``load()`` method.
 
     It is also up to the child class to implement the ``get()`` and ``has()`` methods. You should also implement
-    ``__getattr__()`` and ``__len()__``. See the current implementations as exampes.
+    ``__getattr__()`` and ``__len()__``. See the current implementations as examples.
 
     When implementing a configuration reader, care must be taken that no attribute will conflict with configuration
     values.
 
-    The path, the location of the file, and the file name (without) the extension are stored internally using an
+    The path, the location of the file, and the file name (without the extension) are stored internally using an
     underscore prefix so that these names will not conflict with configuration values.
 
     """
@@ -55,7 +55,11 @@ class Base(object):
 
     @property
     def exists(self):
-        """Indicates whether the configuration file exists."""
+        """Indicates whether the configuration file exists.
+
+        :rtype: bool
+
+        """
         return os.path.exists(self._path)
 
     def get(self, name, default=None):

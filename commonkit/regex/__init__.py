@@ -2,7 +2,8 @@
 Abstract
 --------
 
-Some people, when confronted with a problem, think "I know, I'll use regular expressions." Now they have two problems. -- `Jamie Zawinsk`_
+Some people, when confronted with a problem, think "I know, I'll use regular expressions." Now they have two
+problems. -- `Jamie Zawinsk`_
 
 .. _Jamie Zawinsk: https://blog.codinghorror.com/regular-expressions-now-you-have-two-problems/
 

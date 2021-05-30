@@ -23,7 +23,7 @@ Jinja2 is required when using ``parse_jinja_string()``:
 
 An error is raised if the dependency is not installed.
 
-Pygments is required when using ``highlight_code``:
+Pygments is required when using ``highlight_code()``:
 
 .. code-block:: bash
 
@@ -157,7 +157,6 @@ Remove non-ASCII characters from a string.
     string = "å fine méss"
     print(remove_non_ascii(string))
 
-
 replace_non_ascii
 .................
 
@@ -177,7 +176,9 @@ Convert the given text into a slugline.
 
 .. note::
     This slug routine is both *simple* and *slow*. If you need faster or more sophisticated processing, check out
-    awesome-slugify.
+    `awesome-slugify`_. If you are using Django, use the builtin ``slugify`` function.
+
+.. _awesome-slugify: https://pypi.org/project/awesome-slugify/
 
 .. code-block:: python
 

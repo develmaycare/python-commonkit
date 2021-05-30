@@ -8,7 +8,7 @@ Usage
 -----
 
 We often use ``DeeplyDisturbingError`` when something something is very (very) wrong with core or "deep" functionality.
-It may be raised because the precise conditions for for arriving at the error may be puzzling or somewhat unknown, as is
+It may be raised because the precise conditions for arriving at the error may be puzzling or somewhat unknown, as is
 often the case with run-time logic conditions that have yet to be proved.
 
 Likewise, we like to use the ``DoesNotCompute`` exception when a mathematical or related logic operation has failed.

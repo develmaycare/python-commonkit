@@ -1,6 +1,7 @@
 from commonkit.loading import *
 import os
 import pytest
+import sys
 
 
 class FakePackage(object):
@@ -25,6 +26,9 @@ def test_get_packages():
 
 
 def test_has_callable():
+    assert has_callable(sys, "exit")
+
+
     class NoCallable(object):
         pass
 

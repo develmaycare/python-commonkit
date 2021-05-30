@@ -2,8 +2,8 @@
 Abstract
 --------
 
-Working with the shell -- commands, input, and outputs -- is a common activity in Python development. The shell library
-brings various utilities together to make working with the shell a pleasure.
+Working with the shell -- commands, input, and outputs -- is a common activity in Python development. The shell
+component brings various utilities together to make working with the shell a pleasure.
 
 Install
 -------
@@ -21,13 +21,14 @@ Usage
 Commands and Scripts
 ....................
 
-This library encapsulates shell commands in an object-oriented fashion, making it easier to assemble, preview, and run
+This component encapsulates shell commands in an object-oriented fashion, making it easier to assemble, preview, and run
 shell commands, and obtain the results.
 
 Using a Command
 ^^^^^^^^^^^^^^^
 
-The shell library's Command provides a convenient, object-oriented representation of command line execution.
+The :py:class:`commonkit.shell.commands.Command` class provides a convenient, object-oriented representation of command
+line execution.
 
 .. code-block:: python
 
@@ -57,7 +58,7 @@ The shell library's Command provides a convenient, object-oriented representatio
 Quick and Easy Aborts
 ^^^^^^^^^^^^^^^^^^^^^
 
-It is convenient to issue a message at the same time as calling ``sys.exit()``.
+It is convenient to issue a message at the same time as calling ``exit()``.
 
 .. code-block:: python
 
@@ -71,7 +72,7 @@ It is convenient to issue a message at the same time as calling ``sys.exit()``.
 Multiple Commands in a Script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The script class may be used to bring related commands together:
+The :py:class:`commonkit.shell.scripts.Script` class may be used to bring related commands together:
 
 .. code-block:: python
 
@@ -91,8 +92,8 @@ The prompt library provides utilities for collecting user input on the command l
 Input Classes
 ^^^^^^^^^^^^^
 
-The base :py:class:`Input` class forms the basis for collecting user input. It may be used on its own, but the
-type-specific classes provide additional options and validation. The supported input types are:
+The base :py:class:`commonkit.shell.prompts.Input` class forms the basis for collecting user input. It may be used on
+its own, but the type-specific classes provide additional options and validation. The supported input types are:
 
 - Boolean
 - Email
@@ -105,8 +106,8 @@ type-specific classes provide additional options and validation. The supported i
 Collecting Related Inputs
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The :py:class:`Form` class may be used to collect related inputs together. This class is meant to be extended with
-defined inputs.
+The :py:class:`commonkit.shell.prompts.Form` class may be used to collect related inputs together. This class is meant
+to be extended with defined inputs.
 
 .. code-block:: python
 
@@ -132,7 +133,7 @@ A simple input looks like:
 
     from commonkit.shell import get_input
 
-    value = get_input("Enter Your Tea Time", default="5pm")
+    value = get_input("Enter Your Ideal Tea Time", default="5pm")
     print(value)
 
 Choices may also be used:
@@ -148,7 +149,7 @@ Choices may also be used:
         "6pm",
     ]
 
-    value = get_choice("Select Your Tea Time", choices=choices, default="5pm")
+    value = get_choice("Select Your Ideal Tea Time", choices=choices, default="5pm")
     print(value)
 
 Tables
@@ -199,7 +200,7 @@ The following procedural utilities are provided:
 - ``red()``: Print a message in red.
 - ``yellow()``: Print a message in yellow.
 
-The :py:class:`Feedback` class may be used to collect and print messages.
+The :py:class:`commonkit.shell.feedback.Feedback` class may be used to collect and print messages.
 
 .. code-block:: python
 

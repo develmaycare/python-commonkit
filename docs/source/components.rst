@@ -4,92 +4,25 @@
 Components
 **********
 
-Config
-======
+.. toctree::
+    :maxdepth: 2
 
-.. automodule:: commonkit.config
+    Config <components-config>
+    Context Managers <components-context-managers>
+    CSV <components-csv>
+    Database <components-database>
+    Dispatcher <components-dispatcher>
+    Exceptions <components-exceptions>
+    Files <components-files>
+    Lists <components-lists>
+    Loading <components-loading>
+    Logging <components-logging>
+    Math <components-math>
+    Platform <components-platform>
+    Pluggable <components-pluggable>
+    Regex <components-regex>
+    Shell <components-shell>
+    Strings <components-strings>
+    Types <components-types>
+    Watchers <components-watchers>
 
-Context Managers
-================
-
-.. automodule:: commonkit.context_managers
-
-CSV
-===
-
-.. automodule:: commonkit.csv
-
-Database
-========
-
-.. automodule:: commonkit.database
-
-Dispatcher
-==========
-
-.. automodule:: commonkit.dispatcher
-
-Exceptions
-==========
-
-.. automodule:: commonkit.exceptions
-
-Files
-=====
-
-.. automodule:: commonkit.files
-
-Lists
-=====
-
-.. automodule:: commonkit.lists
-
-Loading
-=======
-
-.. automodule:: commonkit.loading
-
-Logging
-=======
-
-.. automodule:: commonkit.logging
-
-Math
-====
-
-.. automodule:: commonkit.math
-
-Platform
-========
-
-.. automodule:: commonkit.platform
-
-Pluggable
-=========
-
-.. automodule:: commonkit.pluggable
-
-Regex
-=====
-
-.. automodule:: commonkit.regex
-
-Shell
-=====
-
-.. automodule:: commonkit.shell
-
-Strings
-=======
-
-.. automodule:: commonkit.strings
-
-Types
-=====
-
-.. automodule:: commonkit.types
-
-Watchers
-========
-
-.. automodule:: commonkit.watchers

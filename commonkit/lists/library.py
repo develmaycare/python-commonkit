@@ -166,7 +166,7 @@ def pick(attribute, source, default=None):
             }
         }
 
-        value = pick('three.seven', d)
+        value = pick('three.g.seven', d)
         print(value)
 
     """

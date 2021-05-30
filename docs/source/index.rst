@@ -1,11 +1,5 @@
 commonkit
-===========
-
-.. raw:: html
-
-    <p>
-    <a href="https://develmaycare.com/products/python/commonkit/" target="parent">Project Home Page</a>
-    </p>
+=========
 
 .. toctree::
     :maxdepth: 2

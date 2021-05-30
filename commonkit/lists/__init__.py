@@ -2,7 +2,8 @@
 Abstract
 --------
 
-`List manipulation in Python`_ may be quite advanced. The functions here provide some additional convenience for working with lists.
+`List manipulation in Python`_ may be quite advanced. The functions here provide some additional convenience for working
+with lists and iterables.
 
 .. _List manipulation in Python: https://howchoo.com/g/ytezyzdlzjg/python-list
 
@@ -75,8 +76,6 @@ Get a nested value from a dictionary. This is especially useful for YAML or simi
 
     from commonkit import get_nested_value
 
-
-
 pick
 ....
 
@@ -93,7 +92,7 @@ Pick a value from a dictionary, list, tuple, or object.
     }
     print(pick("two", d))
 
-The index number of lists and tuples is starts at 1 and not 0.
+The index number of lists and tuples starts at 1 and not 0.
 
 .. code-block:: python
 
@@ -113,7 +112,7 @@ Dictionary attributes that are nested within a dictionary may be given in a dot-
         }
     }
 
-    print(pick('three.seven', d))
+    print(pick('three.g.seven', d))
 
 safe_join
 .........
@@ -233,7 +232,7 @@ The Loop class provides some built-in convenience for working in for loops.
 .. code-block:: python
 
     loop = Loop(["A", "B", "C", "D", "E", "F", "G"])
-    for i in indexed:
+    for value in loop:
         print(loop.count, loop.is_first(), value, loop.is_last())
 
 Resources

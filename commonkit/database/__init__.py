@@ -26,7 +26,7 @@ SQLite is supported by default. Specific database engines require additional, th
 .. note::
     MS SQL utilizes pyodbc which may require the installation of system libraries.
 
-If you wish to work with tablib datasets or use the export functionality, you must also install: ``pip install tablib``
+If you wish to work with tablib datasets or use the export functionality, you must also: ``pip install tablib``
 
 Additionally, the Excel and YAML export formats require additional packages.
 
@@ -62,7 +62,7 @@ The ``debug=True`` causes queries to be printed before execution. You may also l
     from commonkit.database import load_database
 
     log = logging.getLogger("query_log")
-    db = load_database("sqlite", debug=True, log=log, path="path/to/my.db")
+    db = load_database("sqlite", log=log, path="path/to/my.db")
 
 Specifying a Table Prefix
 .........................
@@ -125,6 +125,13 @@ Create, Read, Update, and Delete are supported.
 .. code-block:: python
 
     result = db.select("page", limit=10, order_by="title")
+    print(result.rows)
+
+By default, all columns are selected. To specify the columns:
+
+.. code-block:: python
+
+    result = db.select("page", columns=["body", "title"])
     print(result.rows)
 
 **Update**

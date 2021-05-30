@@ -2,12 +2,14 @@
 Abstract
 --------
 
-Loading Python resources dynamically is a common enough requirement. The loading library facilitates some generic
+Loading Python resources dynamically is a common enough requirement. The loading component facilitates some generic
 utilities for making this a bit easier.
 
 .. note::
-    If you are using Django, you should be looking at ``django.utils.module_loading`` *first*. Likewise, SuperDjango
+    If you are using Django, you should be looking at ``django.utils.module_loading`` *first*. Likewise, `SuperDjango`_
     provides additional loading utilities.
+
+.. _SuperDjango: https://superdjango.com
 
 Usage
 -----
@@ -28,7 +30,7 @@ Use the ``has_callable()`` function to determine if an instance has a callable m
     instance = MyWhatever()
     print(has_callable(instance, "testing")
 
-Note this also works for classes, class methods, and static methods.
+Note this works for modules, classes, class methods, and static methods.
 
 Discovering Modules
 ....................
@@ -78,8 +80,8 @@ from any module that exists in the Python path.
     config_class = import_member("settings.Config")
 
 By default, exceptions are always raised. You can pass ``raise_exception=False`` to suppress this behavior, but be sure
-to deal with this in your code. When exceptions are suppressed, ``import_member()`` returns ``None`` is something went
-wrong in the attempt to import.
+to deal with this in your code. When exceptions are suppressed, ``import_member()`` returns ``None`` if something went
+wrong in the attempted to import.
 
 Testing Whether a Submodule Exists
 ..................................
@@ -91,7 +93,7 @@ may be used for this.
 
     from commonkit.loading import submodule_exists
 
-    if submodule_exists("settings.Config"):
+    if submodule_exists("settings.config"):
         # ...
 
 Working With a Module in an Object-Oriented Way
@@ -113,7 +115,7 @@ There may be cases where you want to work with a module as an instance, rather t
 
 Consider extending ``Module`` and customizing the ``_load()`` method to do additional handling on ``load()``.
 
-For example,wWe've used this approach to generate dynamic documentation.
+For example, we've used this approach to generate dynamic documentation.
 
 """
 __version__ = "0.2.0-d"

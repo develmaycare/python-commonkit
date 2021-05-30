@@ -10,7 +10,8 @@ Usage
 Defining a Plugin
 .................
 
-By extending the ``PluginProvider`` class, you are indicating that your code is a plugin provider.
+By extending the :py:class:`commonkit.pluggable.library.PluginProvider` class, you are indicating that your class is a
+plugin.
 
 .. code-block:: python
 
@@ -19,7 +20,7 @@ By extending the ``PluginProvider`` class, you are indicating that your code is 
     class MyProvider(PluginProvider):
         pass
 
-Of course, your provider must do something in order to be useful as a plugin. What it does and how it does it is
+Of course, your provider must *do* something in order to be useful as a plugin. What it does and how it does it is
 entirely up to you. The most important thing is that you document the expected methods and properties in your plugin
 API.
 
@@ -105,7 +106,7 @@ Reference
 ---------
 
 Much of the code in this library was inspired by `A Simple Plugin Framework`_ by Marty Alchin. This excellent article
-discusses the simplest and practical approach to pluggable behavior and is well worth reading.
+discusses a simple and practical approach to pluggable behavior and is well worth reading.
 
 .. _A Simple Plugin Framework: http://martyalchin.com/2008/jan/10/simple-plugin-framework/
 

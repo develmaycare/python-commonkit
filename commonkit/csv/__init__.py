@@ -16,7 +16,7 @@ Consider a CSV whose first row is ...
 
 ``First Name,Last Name,Job Title,Salary``
 
-You may use the :py:class:`commonkit.csv.library.KeywordMapping` to change these columns to a Pythonic value such
+You may use the :py:class:`commonkit.csv.library.KeywordMapping` to change these columns to a Pythonic name such
 as ``first_name``, etc.
 
 .. code-block:: python
@@ -54,8 +54,7 @@ but is not explicit as with the keyword mapping above.
 
     from commonkit.csv import AutoMapping, CSVFile
 
-    auto = AutoMapping()
-    csv = CSVFile("path.csv", mapping=auto)
+    csv = CSVFile("path.csv", mapping=AutoMpping())
     csv.read()
 
     print(csv.rows)
@@ -93,8 +92,7 @@ dictionaries.
 
     from commonkit.csv import AutoMapping, CSVFile, CSVRow
 
-    auto = AutoMapping()
-    csv = CSVFile("path.csv", mapping=auto, row_class=CSVRow)
+    csv = CSVFile("path.csv", mapping=AutoMapping(), row_class=CSVRow)
     csv.read()
 
     for row in csv:
@@ -113,8 +111,7 @@ rather than accepted as is. To override this behavior, supply ``none_type_values
 
     from commonkit.csv import AutoMapping, CSVFile
 
-    auto = AutoMapping()
-    csv = CSVFile("path.csv", mapping=auto, none_type_values=["NA", "...", "--"])
+    csv = CSVFile("path.csv", mapping=AutoMapping(), none_type_values=["NA", "...", "--"])
     csv.read()
 
 Handling Default Values
@@ -127,12 +124,11 @@ is not provided.
 
     from commonkit.csv import AutoMapping, CSVFile
 
-    auto = AutoMapping()
     defaults = {
         'job_title': "Unspecified",
         'salary': 95000,
     }
-    csv = CSVFile("path.csv", mapping=auto)
+    csv = CSVFile("path.csv", mapping=AutoMapping())
     csv.read()
 
 Casting Data to Python Types
@@ -144,8 +140,7 @@ It is possible to convert data from a CSV to the appropriate Python data type.
 
     from commonkit.csv import AutoMapping, CSVFile
 
-    auto = AutoMapping()
-    csv = CSVFile("path.csv", mapping=auto, smart_cast_fields=["salary"])
+    csv = CSVFile("path.csv", mapping=AutoMapping(), smart_cast_fields=["salary"])
     csv.read()
 
 Using our previous CSV examples, the code above will automatically convert *salary* to an integer.
@@ -164,11 +159,10 @@ The ``field_name`` and ``row`` provide additional context that may be used to ca
     def cast_salary(field_name, row, value):
         return Decimal(value)
 
-    auto = AutoMapping()
     casts = {
         'salary': cast_salary,
     }
-    csv = CSVFile("path.csv", mapping=auto, smart_cast_fields=casts)
+    csv = CSVFile("path.csv", mapping=AutoMapping(), smart_cast_fields=casts)
     csv.read()
 
 Note that when supplying ``smart_cast_fields`` as a dictionary, fields without a callback should use ``None``.

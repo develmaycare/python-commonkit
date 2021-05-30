@@ -18,8 +18,8 @@ Jinja is required for `Loading a Configuration as a Template`_.
 Usage
 -----
 
-The settings component supports INI files, "flat" configuration files, and also loading Python files. The examples below
-demonstrate INI files. See :ref:`reference` for other configuration file types.
+The config component supports INI files, "flat" configuration files, and also loading Python files. The examples below
+demonstrate INI files. See `Other Configuration Files`_ for other configuration file types.
 
 Defining a Configuration File
 .............................
@@ -86,7 +86,7 @@ It is possible to load a configuration file as a Jinja2 template prior to parsin
     name = {{ client_name }}
     code = {{ client_code }}
 
-The code above redefines the previous INI example, but changes some of the configuration into template variables.
+The code above redefines the previous INI example, changing some of the configuration into template variables.
 
 Then in your code:
 
@@ -119,7 +119,7 @@ The example below is an INI file that includes settings that do not belong to a 
     some_value = 456
     some_other_value = also testing
 
-The :py:class:`commonkit.config.library.INI` class provides a means of capturing the "bare" values using the
+The :py:class:`commonkit.config.library.INIConfig` class provides a means of capturing the "bare" values using the
 ``dummy`` parameter.
 
 .. code-block:: python
@@ -135,7 +135,7 @@ The :py:class:`commonkit.config.library.INI` class provides a means of capturing
 Other Configuration Files
 .........................
 
-The config library also supports configuration files without sections (a "flat" configuration) and may be used to load
+The config component also supports configuration files without sections (a "flat" configuration) and may be used to load
 Python files as configuration.
 
 An example flat file:

@@ -127,6 +127,7 @@ def test_is_variable_name():
     assert is_variable_name("_testing_123_") is True
     assert is_variable_name("__testing_123__") is True
 
+
 def test_smart_cast():
     """Check that values are correctly cast to a Python data type."""
     value = "123"

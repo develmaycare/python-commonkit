@@ -2,7 +2,9 @@
 Abstract
 --------
 
-The helper functions here are simply shortcuts for common math calculations, wrapped in try/except. This makes the operation more expressive, easier to remember, and also saves repetitive exception catching code.
+The helper functions here are simply shortcuts for common mathematical calculations, wrapped in try/except when
+appropriate. This makes the operation more expressive, easier to remember, and also saves repetitive exception catching
+code.
 
 Usage
 -----
@@ -29,6 +31,15 @@ Calculate the average of a given number of values, taking care to handle zero di
     from commonkit import average
 
     values = [1, 2, 3, 4, 5]
+    print(average(values))
+
+You may exclude 0 values by providing the ``lazy`` parameter:
+
+.. code-block:: python
+
+    from commonkit import average
+
+    values = [0, 1, 2, 3, 4, 5, 0]
     print(average(values))
 
 difference
@@ -71,7 +82,7 @@ Determine whether a given number is a prime number. Note that a non-integer will
 median
 ......
 
-Calculate the median of number values. The need not be of the same type.
+Calculate the median of number values. They need not be of the same type.
 
 .. code-block:: python
 
@@ -94,7 +105,7 @@ Calculate the percentage that a portion makes up of a total.
 product
 .......
 
-Multiple numbers.
+Get the product of a collection of numbers.
 
 .. code-block:: python
 

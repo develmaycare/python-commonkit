@@ -75,7 +75,11 @@ class FlatConfig(Base):
         return False
 
     def load(self):
-        """Load a flat configuration file."""
+        """Load a flat configuration file.
+
+        :rtype: bool
+
+        """
         if not self.exists:
             return False
 

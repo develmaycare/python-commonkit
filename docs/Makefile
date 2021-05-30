@@ -79,6 +79,7 @@ pickle:
 .PHONY: json
 json:
 	$(SPHINXBUILD) -b json $(ALLSPHINXOPTS) $(BUILDDIR)/json
+	cp nav.ini $(BUILDDIR)/json/
 	@echo
 	@echo "Build finished; now you can process the JSON files."
 
