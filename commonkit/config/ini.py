@@ -3,7 +3,9 @@
 from configparser import ConfigParser, DuplicateOptionError, DuplicateSectionError, InterpolationMissingOptionError, \
     MissingSectionHeaderError, ParsingError
 from ..files import parse_jinja_template, read_file
+from ..strings import is_variable_name
 from .base import Base
+from .exceptions import VariableNameNotAllowed
 
 # Exports
 
@@ -137,6 +139,9 @@ class INIConfig(Base):
         for section in ini.sections():
             kwargs = dict()
             for key, value in ini.items(section):
+                if not is_variable_name(key):
+                    raise VariableNameNotAllowed(key, self.path)
+
                 _key, _value = self._process_key_value_pair(key, value, section=section)
                 kwargs[_key] = _value
 

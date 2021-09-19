@@ -1,6 +1,7 @@
 # Imports
 
 from ..files import parse_jinja_template, read_file
+from ..strings import is_variable_name
 from .base import Base
 from .exceptions import VariableNameNotAllowed
 
@@ -102,7 +103,7 @@ class FlatConfig(Base):
             key = key.strip()
             value = value.strip()
 
-            if key in self._disallowed_variable_names():
+            if key in self._disallowed_variable_names() or not is_variable_name(key):
                 raise VariableNameNotAllowed(key, self._path, line=line_number)
 
             _key, _value = self._process_key_value_pair(key, value)
