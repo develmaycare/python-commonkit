@@ -325,6 +325,12 @@ class File(object):
     .. _pathlib: https://docs.python.org/3/library/pathlib.html
 
     """
+    # Use decimal or binary base?
+    # https://www.gbmb.org/gigabytes
+    SIZE_BYTES = "bytes"
+    SIZE_KILOBYTES = "kilobytes"
+    SIZE_MEGABYTES = "megabytes"
+    SIZE_GIGABYTES = "gigabytes"
 
     def __init__(self, path):
         """Initialize the file instance.
@@ -350,3 +356,36 @@ class File(object):
 
         """
         return os.path.exists(self.path)
+
+    @property
+    def size(self):
+        return self.get_file_size()
+
+    def get_file_size(self, unit=SIZE_BYTES):
+        value = os.path.getsize(self.path)
+
+        if value == 0:
+            return 0
+
+        if unit == self.SIZE_GIGABYTES:
+            return value / 1_000_000_000
+        elif unit == self.SIZE_MEGABYTES:
+            return value / 1_000_000
+        elif unit == self.SIZE_KILOBYTES:
+            return value / 1000
+        else:
+            return value
+
+    def get_file_size_display(self):
+        size = self.get_file_size()
+
+        if size >= 1_000_000_000:
+            return "%sGB" % self.get_file_size(unit=self.SIZE_GIGABYTES)
+
+        if size >= 1_000_000:
+            return "%sMB" % self.get_file_size(unit=self.SIZE_MEGABYTES)
+
+        if size >= 1000:
+            return "%sKB" % self.get_file_size(unit=self.SIZE_KILOBYTES)
+
+        return "%sB" % size
