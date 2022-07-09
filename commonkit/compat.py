@@ -22,6 +22,7 @@ try:
 except ImportError:
     JINJA_ENABLED = False
     JinjaEnvironment = None
+    JinjaLoader = None
     JinjaTemplate = None
 
 
