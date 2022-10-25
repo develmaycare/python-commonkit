@@ -24,7 +24,10 @@ SQLite is supported by default. Specific database engines require additional, th
 - Postgres: ``pip install commonkit[pgsql]``
 
 .. note::
-    MS SQL utilizes pyodbc which may require the installation of system libraries.
+    MS SQL utilizes pyodbc which may require the installation of system libraries. See
+    https://github.com/mkleehammer/pyodbc/issues/441
+
+    On an apt system, this might be resolved with ``apt install unixodbc-dev``.
 
 If you wish to work with tablib datasets or use the export functionality, you must also: ``pip install tablib``
 

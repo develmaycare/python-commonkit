@@ -6,6 +6,22 @@ import pytest
 
 from commonkit.files.library import *
 
+
+def patch_os_path_getsize_0(path):
+    return 0
+
+
+def patch_os_path_get_size_kb(path):
+    return 1500
+
+
+def patch_os_path_get_size_gb(path):
+    return 2_500_000_000
+
+
+def patch_os_path_get_size_mb(path):
+    return 1_000_000
+
 # Tests
 
 
@@ -37,7 +53,7 @@ def test_copy_file():
     assert os.path.exists(to_path) is True
 
     os.remove(to_path)
-    os.rmdir(os.path.dirname(to_path))
+    os.removedirs(os.path.dirname(to_path))
 
     # This will not copy because the directory doesn't exist.
     to_path = os.path.join("tmp", "readme.txt")
@@ -146,6 +162,37 @@ class TestFile():
 
         f = File(os.path.join("tests", "config", "nonexistent.ext"))
         assert f.exists is False
+
+    def test_get_file_size(self):
+        f = File(os.path.join("tests", "config", "example.ini"))
+        assert type(f.get_file_size()) is int
+        assert type(f.get_file_size(unit=File.SIZE_KILOBYTES)) is float
+        assert type(f.get_file_size(unit=File.SIZE_MEGABYTES)) is float
+        assert type(f.get_file_size(unit=File.SIZE_GIGABYTES)) is float
+
+    def test_get_file_size_0(self, monkeypatch):
+        monkeypatch.setattr("os.path.getsize", patch_os_path_getsize_0)
+        f = File(os.path.join("tests", "config", "example.ini"))
+        assert f.size == 0
+
+    def test_get_file_size_display(self, monkeypatch):
+        f = File(os.path.join("tests", "config", "example.ini"))
+        assert f.get_file_size_display() == "99B"
+
+    def test_get_file_size_display_gb(self, monkeypatch):
+        monkeypatch.setattr("os.path.getsize", patch_os_path_get_size_gb)
+        f = File(os.path.join("tests", "config", "example.ini"))
+        assert f.get_file_size_display() == "2.5GB"
+
+    def test_get_file_size_display_kb(self, monkeypatch):
+        monkeypatch.setattr("os.path.getsize", patch_os_path_get_size_kb)
+        f = File(os.path.join("tests", "config", "example.ini"))
+        assert f.get_file_size_display() == "1.5KB"
+
+    def test_get_file_size_display_mb(self, monkeypatch):
+        monkeypatch.setattr("os.path.getsize", patch_os_path_get_size_mb)
+        f = File(os.path.join("tests", "config", "example.ini"))
+        assert f.get_file_size_display() == "1.0MB"
 
     def test_init(self):
         """Check that file properties are correctly initialized."""
