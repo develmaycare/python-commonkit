@@ -331,7 +331,7 @@ def to_bool(value, false_values=FALSE_VALUES, true_values=TRUE_VALUES):
     if value in false_values:
         return False
 
-    raise ValueError('"%s" cannot be converted to True or False.')
+    raise ValueError('"%s" cannot be converted to True or False.' % value)
 
 
 def to_decimal(value, fail_silently=True, places=2):
