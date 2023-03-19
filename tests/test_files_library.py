@@ -96,11 +96,11 @@ def test_get_files():
 
     path = os.path.join("tests", "config")
     files = get_files(path)
-    assert len(files) == 12
+    assert len(files) == 13
 
     path = os.path.join("tests", "config")
     files = get_files(path, extension=".ini")
-    assert len(files) == 4
+    assert len(files) == 5
 
 
 def test_parse_jinja_template():

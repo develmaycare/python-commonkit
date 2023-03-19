@@ -1,5 +1,6 @@
 import os
 import pytest
+from commonkit.config.exceptions import VariableNameNotAllowed
 from commonkit.config.ini import *
 
 # Tests
@@ -79,6 +80,10 @@ class TestINIConfig(object):
 
         config = INIConfig(os.path.join("tests", "config", "example-bad.ini"))
         assert config.load() is False
+
+        with pytest.raises(VariableNameNotAllowed):
+            config = INIConfig(os.path.join("tests", "config", "example-bad2.ini"))
+            config.load()
 
 
 class TestSection(object):
