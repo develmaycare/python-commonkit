@@ -650,9 +650,12 @@ class Row(object):
             return self.values()[item]
 
         if item in self.attributes():
+            # This no longer seems to be the case -- why?
             # Latest SQLAlchemy uses RMKeyView objects which we abuse a little.
-            index = self.attributes()._keys.index(item)
-            if self.attributes()._keys.count(item) > 1:
+            # index = self.attributes()._keys.index(item)
+            # if self.attributes()._keys.count(item) > 1:
+            index = self.attributes().index(item)
+            if self.attributes().count(item) > 1:
                 raise KeyError("The data has multiple fields named: %s" % item)
 
             return self.values()[index]
